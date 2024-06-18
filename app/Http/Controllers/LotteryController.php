@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lottery;
 use App\Models\LotteryLink;
 use App\Models\Prize;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
@@ -73,8 +74,6 @@ class LotteryController extends Controller
 
         LotteryLink::insert($links);
 
-
-
         Prize::createFromRequest($lottery->id, $request->post('prizes'));
 
 
@@ -83,9 +82,12 @@ class LotteryController extends Controller
 
     public function draw(Lottery $lottery)
     {
-        $lotteryLinkIDs = LotteryLink::where('lottery_id', $lottery->id)
-            ->pluck('id')->toArray();
-        Prize::fillUrl($lottery->id, $lotteryLinkIDs);
+        if ($lottery->is_draw === 0) {
+            $lottery->is_draw = 1;
+            $lottery->save();
+
+            Prize::fillUrl($lottery->id);
+        }
 
         return response()->json();
     }
@@ -96,7 +98,17 @@ class LotteryController extends Controller
             ->with('link')
             ->get()
             ->map(function (Prize $prize) {
-                return ['id' => $prize->id, 'name' => $prize->name, 'url' => $prize->link?->url, 'html' => $prize->html_url, 'status' => $prize->status];
+                return [
+                    'id' => $prize->id,
+                    'name' => $prize->name,
+                    'url' => $prize->link?->url,
+                    'html' => $prize->html_url,
+                    'status' => $prize->status,
+                    'redeem' => $prize->redeem,
+                    'redeem_at' => $prize->redeem ?
+                        Carbon::createFromFormat('Y-m-d H:i:s', $prize->redeem_at)->format('d/m/Y') :
+                        null,
+                ];
             })
             ->values();
 
@@ -117,5 +129,22 @@ class LotteryController extends Controller
         }
 
         return redirect()->route('lotteries');
+    }
+
+    public function prizeEdit(Lottery $lottery)
+    {
+        $prizes = $lottery->prizes()
+            ->with('link')
+            ->get()
+            ->map(function (Prize $prize) {
+                return ['id' => $prize->id, 'name' => $prize->name, 'url' => $prize->link?->url, 'html' => $prize->html_url, 'status' => $prize->status];
+            })
+            ->values();
+
+        return Inertia::render('Lottery/PrizesEdit')->with([
+            'lottery' => $lottery,
+            'prizes' => $prizes,
+            'links' => $lottery->links->values()
+        ]);
     }
 }

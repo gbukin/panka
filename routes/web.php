@@ -28,8 +28,10 @@ Route::middleware(['auth'])->group(function () {
         return Inertia::render('Lottery');
     })->name('lotteries');
 
+    /* -- API -- */
     Route::get('/lotteries/index', [LotteryController::class, 'index'])
         ->name('lotteries.index');
+    /* -- === -- */
 
     Route::prefix('/lottery')->name('lottery.')->group(function () {
         Route::get('/create', [LotteryController::class, 'create'])
@@ -49,6 +51,12 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/prize/update/{prize}', [PrizeController::class, 'update'])
             ->name('prize.update');
+
+        Route::get('/prizes/edit/{lottery}', [LotteryController::class, 'prizeEdit'])
+            ->name('prize.edit');
+
+        Route::post('/prize/award/{prize}', [PrizeController::class, 'award'])
+            ->name('prize.award');
     });
 });
 

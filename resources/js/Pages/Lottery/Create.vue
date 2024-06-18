@@ -75,27 +75,38 @@ function addPrize() {
 
                         <h2 class="text-lg font-bold mb-2 border-b border-slate-800 w-fit">Prizes</h2>
                         <InputError class="mt-2" :message="form.errors.prizes"/>
-                        <div v-for="(prize, key) in form.prizes" class="w-1/2">
-                            <div class="grid grid-cols-6 gap-x-2">
+                        <div v-for="(prize, key) in form.prizes" class="">
+                            <div class="grid grid-cols-12 gap-x-2">
                                 <InputLabel :for="'prize_' + key"
                                             class="col-span-4"
                                             value="Prize name"/>
-                                <InputLabel :for="'prize_' + key" value="Amount"/>
+
+                                <InputLabel :for="'prize_' + key"
+                                            class="col-span-6"
+                                            value="HTML-page URL"/>
+
+                                <InputLabel :for="'prize_' + key"
+                                            value="Amount"/>
                             </div>
-                            <div class="grid grid-cols-6 gap-x-2">
-                                <TextInput
-                                    type="text"
-                                    class="col-span-4"
-                                    placeholder="Write prize name..."
-                                    v-model="form.prizes[key].name"
-                                    required
+                            <div class="grid grid-cols-12 gap-x-2">
+                                <TextInput type="text"
+                                           class="col-span-4"
+                                           placeholder="Write prize name..."
+                                           v-model="form.prizes[key].name"
+                                           required
+                                />
+
+                                <TextInput type="text"
+                                           v-model="form.prizes[key].html_url"
+                                           class="col-span-6"
+                                           required
                                 />
 
                                 <TextInput type="number"
-                                       @input="validatePrizeAmount(key)"
-                                       v-model="form.prizes[key].amount"
-                                       required
-                                       placeholder="1-1000"
+                                           @input="validatePrizeAmount(key)"
+                                           v-model="form.prizes[key].amount"
+                                           required
+                                           placeholder="1-1000"
                                 />
 
                                 <PrimaryButton class="hover:text-red-600"

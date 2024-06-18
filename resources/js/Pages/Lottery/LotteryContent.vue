@@ -5,6 +5,7 @@ import {onMounted, ref} from "vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import {Head} from "@inertiajs/vue3";
+import DialogModal from "@/Components/Selfmade/DialogModal.vue";
 
 const props = defineProps({
     lottery: {
@@ -47,14 +48,42 @@ function openInput(key) {
     lastOpenedInputValue.value = props.prizes[key].html;
 }
 
-function drawLottery()
-{
+function drawLottery() {
     axios.post(route('lottery.draw.all', {lottery: props.lottery.id}))
         .then((response) => {
             if (response.status === 200) {
-                window.location.href
+                location.reload();
             }
         })
+}
+
+const openDialog = ref(false);
+const awardInputValue = ref(null);
+const awardPrize = ref(null);
+
+function awardPerson()
+{
+    axios.post(route('lottery.prize.award', {prize: awardPrize.value.id}), {'redeemer': awardInputValue.value});
+
+    awardPrize.value.redeem = awardInputValue.value;
+    awardPrize.value.status = 'Awarded';
+
+    let date = new Date();
+
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    awardPrize.value.redeem_at = day + "/" + month + "/" + year;
+
+    awardInputValue.value = null;
+    openDialog.value = false;
+    awardPrize.value = null;
+}
+
+function openAwardDialog(prize) {
+    openDialog.value = true;
+    awardPrize.value = prize;
 }
 
 onMounted(() => {
@@ -70,11 +99,22 @@ onMounted(() => {
 
     <AuthenticatedLayout>
         <div class="py-12 px-1 md:px-6">
+            <DialogModal :show="openDialog"
+                         v-on:close="openDialog = !openDialog; awardInputValue = null"
+                         title="Give out a prize">
+                <div class="flex items-center justify-between">
+                    <input type="text" class="border-b border-slate-400 hover:border-slate-600" placeholder="Lastname Firstname" v-model="awardInputValue">
+                    <PrimaryButton @click="awardPerson">Give</PrimaryButton>
+                </div>
+            </DialogModal>
             <section class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 py-2 px-1 bg-white border rounded shadow">
                 <h2 class="text-xl text-center mt-4">{{ lottery.name }}</h2>
 
-                <hr class="my-4">
-                    <PrimaryButton @click="drawLottery">Draw all</PrimaryButton>
+                <hr class="my-4" v-if="!lottery.ready">
+                <PrimaryButton v-if="!lottery.is_draw" @click="drawLottery">Draw all</PrimaryButton>
+                <a :href="route('lottery.prize.edit', {lottery: lottery.id})" v-if="lottery.is_draw && !lottery.ready">
+                    <PrimaryButton>Edit prize QR</PrimaryButton>
+                </a>
                 <hr class="my-4">
 
                 <div class="bg-white overflow-hidden shadow-sm">
@@ -84,7 +124,7 @@ onMounted(() => {
                         <p class="p-2 col-span-3">HTML-page URL</p>
                         <p class="p-2 col-span-3">QR</p>
                         <p class="p-2">Redeem status</p>
-                        <p class="p-2">1</p>
+                        <p class="p-2"></p>
                     </div>
                     <div v-for="(prize, key) in prizes"
                          :class="{'md:rounded-b-lg': prizes.length === key + 1}"
@@ -92,7 +132,7 @@ onMounted(() => {
 
                         <p class="p-2 col-span-2">{{ prize.name }}</p>
 
-                        <p class="p-2 col-span-3 hover:bg-gray-300 cursor-pointer">
+                        <p class="p-2 col-span-3 hover:bg-gray-300 cursor-pointer" v-if="!lottery.ready">
                             <span v-if="!htmlInputState[key]"
                                   class="flex justify-between"
                                   @click="openInput(key)">
@@ -108,10 +148,20 @@ onMounted(() => {
                                 <PrimaryButton class="ml-1" @click="openInput(-1)">Save</PrimaryButton>
                             </span>
                         </p>
+                        <p class="p-2 col-span-3" v-else>
+                            {{ prize.html }}
+                        </p>
+
                         <p class="p-2 col-span-3">{{ prize.url }}</p>
 
                         <p class="p-2">{{ prize.status }}</p>
-                        <p class="p-2">1</p>
+                        <p class="p-2">
+                            <span v-if="prize.redeem">{{ prize.redeem }}, {{ prize.redeem_at }}</span>
+                            <span v-else>
+                                <PrimaryButton @click="openAwardDialog(prize)">Give prize</PrimaryButton>
+                            </span>
+                        </p>
+
                     </div>
                 </div>
             </section>

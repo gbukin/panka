@@ -24,7 +24,8 @@ class Prize extends Model
         foreach ($data as $prize) {
             $fields = [
                 'name' => $prize['name'],
-                'lottery_id' => $lotteryID
+                'lottery_id' => $lotteryID,
+                'html_url' => $prize['html_url'],
             ];
 
             $populatedPrizes = array_fill(0, $prize['amount'], $fields);
@@ -33,8 +34,12 @@ class Prize extends Model
         }
     }
 
-    public static function fillUrl(int $lotteryID, array $lotteryLinkIDs): void
+    public static function fillUrl(int $lotteryID): void
     {
+        $lotteryLinkIDs = LotteryLink::where('lottery_id', $lotteryID)
+            ->pluck('id')
+            ->toArray();
+
         $prizes = self::where('lottery_id', $lotteryID)
             ->get()->shuffle();
 

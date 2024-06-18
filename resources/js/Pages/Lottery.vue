@@ -65,28 +65,34 @@ onMounted(() => {
 
                 <div class="bg-white overflow-hidden shadow-sm">
                     <div
-                        class="px-2 text-center grid grid-cols-10 bg-slate-600 text-white divide-x divide-slate-700 font-bold rounded-t-lg">
+                        class="px-2 text-center grid grid-cols-11 bg-slate-600 text-white divide-x divide-slate-700 font-bold rounded-t-lg">
                         <p class="p-2">#</p>
                         <p class="p-2 col-span-6">Name</p>
                         <p class="p-2">Created</p>
                         <p class="p-2">Ready</p>
                         <p class="p-2"></p>
+                        <p class="p-2"></p>
                     </div>
                     <div v-for="(lottery, key) in lotteries"
                          v-if="lotteries.length > 0"
                          :class="{'md:rounded-b-lg': lotteries.length === key + 1}"
-                         class="md:px-2 grid grid-cols-10 border border-slate-900 mb-1 md:mb-0">
+                         class="md:px-2 grid grid-cols-11 border border-slate-900 mb-1 md:mb-0">
                         <p class="p-2 text-center">{{ lottery.id }}</p>
                         <p class="p-2 col-span-6">{{ lottery.name }}</p>
                         <p class="p-2">{{ lottery.created }}</p>
                         <p class="p-2">{{ lottery.ready ? 'Yes' : 'No' }}</p>
-                        <a :href="route('lottery.show', {'lottery': lottery.id})" class="flex items-center justify-center md:hover:text-green-800 mt-2 md:mt-0 col-span-5 md:col-span-1">
+                        <a :href="route('lottery.show', {'lottery': lottery.id})"
+                           :class="{'col-span-2': lottery.ready}"
+                           class="flex items-center justify-center md:hover:text-green-800 mt-2 md:mt-0">
                             <button class="w-full h-full rounded bg-slate-700 text-white shadow hover:bg-slate-600 border border-r-white py-2">Open</button>
+                        </a>
+                        <a :href="route('lottery.prize.edit', {'lottery': lottery.id})" v-if="!lottery.ready" class="flex items-center justify-center md:hover:text-green-800 mt-2 md:mt-0 col-span-5 md:col-span-1">
+                            <button class="w-full h-full rounded bg-slate-700 text-white shadow hover:bg-slate-600 border border-r-white py-2">Edit</button>
                         </a>
                     </div>
                     <div v-else
                          class="font-bold border border-slate-800 rounded-b-lg text-center py-4">
-                        __No lotteries created yet__
+                        No lotteries created yet
                     </div>
                 </div>
             </section>

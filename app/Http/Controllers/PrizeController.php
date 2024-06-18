@@ -34,4 +34,16 @@ class PrizeController extends Controller
             echo 'No prize, good luck in next time';
         }
     }
+
+    public function award(Request $request, Prize $prize)
+    {
+        if ($prize->status !== 'Awarded') {
+            $prize->redeem = $request->post('redeemer');
+            $prize->redeem_at = now();
+            $prize->status = 'Awarded';
+            $prize->save();
+        }
+
+        return response()->json();
+    }
 }
