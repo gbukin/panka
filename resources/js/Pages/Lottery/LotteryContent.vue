@@ -102,9 +102,9 @@ onMounted(() => {
             <DialogModal :show="openDialog"
                          v-on:close="openDialog = !openDialog; awardInputValue = null"
                          title="Give out a prize">
-                <div class="flex items-center justify-between">
-                    <input type="text" class="border-b border-slate-400 hover:border-slate-600" placeholder="Lastname Firstname" v-model="awardInputValue">
-                    <PrimaryButton @click="awardPerson">Give</PrimaryButton>
+                <div class="flex items-center justify-between flex-col md:flex-row gap-x-2">
+                    <input type="text" class="border-b w-full block md:inline md:w-full border-slate-400 hover:border-slate-600" placeholder="Lastname Firstname" v-model="awardInputValue">
+                    <PrimaryButton @click="awardPerson" class="mt-4 md:mt-0 w-full md:w-fit"><span class="mx-auto">Give</span></PrimaryButton>
                 </div>
             </DialogModal>
             <section class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 py-2 px-1 bg-white border rounded shadow">
@@ -120,17 +120,17 @@ onMounted(() => {
                 <div class="bg-white overflow-hidden shadow-sm">
                     <div
                         class="px-2 text-center grid grid-cols-10 bg-slate-600 text-white divide-x divide-slate-700 font-bold rounded-t-lg">
-                        <p class="p-2 col-span-2">Name</p>
+                        <p class="p-2">Name</p>
                         <p class="p-2 col-span-3">HTML-page URL</p>
                         <p class="p-2 col-span-3">QR</p>
                         <p class="p-2">Redeem status</p>
-                        <p class="p-2"></p>
+                        <p class="p-2 col-span-2"></p>
                     </div>
                     <div v-for="(prize, key) in prizes"
                          :class="{'md:rounded-b-lg': prizes.length === key + 1}"
                          class="md:px-2 grid grid-cols-10 border border-slate-900">
 
-                        <p class="p-2 col-span-2">{{ prize.name }}</p>
+                        <p class="p-2">{{ prize.name }}</p>
 
                         <p class="p-2 col-span-3 hover:bg-gray-300 cursor-pointer" v-if="!lottery.ready">
                             <span v-if="!htmlInputState[key]"
@@ -155,10 +155,12 @@ onMounted(() => {
                         <p class="p-2 col-span-3">{{ prize.url }}</p>
 
                         <p class="p-2">{{ prize.status }}</p>
-                        <p class="p-2">
-                            <span v-if="prize.redeem">{{ prize.redeem }}, {{ prize.redeem_at }}</span>
-                            <span v-else>
-                                <PrimaryButton @click="openAwardDialog(prize)">Give prize</PrimaryButton>
+                        <p class="p-2 col-span-2 text-right">
+                            <span v-if="lottery.is_draw">
+                                <span v-if="prize.redeem">{{ prize.redeem }}, {{ prize.redeem_at }}</span>
+                                <span v-else>
+                                    <PrimaryButton @click="openAwardDialog(prize)">Give prize</PrimaryButton>
+                                </span>
                             </span>
                         </p>
 
