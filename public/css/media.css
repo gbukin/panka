@@ -1,0 +1,257 @@
+@media (min-width: 2400px) {
+	#bottom {
+		background: #0b0c0c url(../img/wave3.png) no-repeat bottom -27px left -50px;
+	}
+}
+
+@media (max-width: 1560px) {
+	#bottom {
+		background: url("../img/backgraund footer.png") no-repeat bottom left / 100%,
+		url("../img/wave3.png") no-repeat bottom left -50px;
+	}
+}
+
+@media (max-width: 1100px) {
+	body {
+		padding: 0;
+	}
+	#top {
+		padding: 40px 40px 230px 40px;
+	}
+	#center {
+		padding: 100px 20px;
+	}
+	#bottom {
+		padding: 70px 40px 60px 40px;
+	}
+	.top-block-imgs {
+		margin-left: 0;
+		height: 430px;
+		width: 790px;
+	}
+	.bottom-about-block .video {
+		height: auto;
+	}
+	.center-slider .prev,
+	.center-slider .next {
+		right: 0 !important;
+		left: 0 !important;
+	}
+}
+
+@media (max-width: 940px) {
+	#bottom {
+		background: #0b0c0c;
+	}
+	.bottom-footer {
+		position: relative;
+	}
+	.bottom-footer:before {
+        content: "";
+        width: 120vw;
+        height: calc(100% + 100px);
+        position: absolute;
+        left: -75px;
+        background: #000;
+        border-top: 3px solid #eac45f;
+        z-index: -1;
+        bottom: -100px;
+	}
+	.top-lines,
+	.center-lines {
+		display: none;
+	}
+	#top:after {
+		top: 0;
+	}
+	.top-video video {
+		background-size: 200%;
+	}
+}
+
+@media (max-width: 890px) {
+	#top {
+		padding: 40px 20px 230px 20px;
+	}
+	.top-block-imgs img:nth-child(1) {
+		display: none;
+	}
+	.top-block-imgs {
+		margin-left: -150px;
+	}
+	.top-about-block .text {
+		margin-left: -400px;
+	}
+	.center-slider .swiper-slide .img {
+		width: 130px;
+	}
+	.center-slider {
+		padding: 0 10px;
+	}
+	.center-h:before {
+		display: none;
+	}
+	.bottom-about-block .text img {
+		display: none;
+	}
+	.bottom-about-block {
+		display: block;
+	}
+	.bottom-about-block .text {
+		width: 100%;
+	}
+	.bottom-about-block .video {
+		width: 100%;
+		height: 320px;
+	}
+	.bottom-footer {
+		display: block;
+		padding-top: 50px;
+	}
+	.bottom-footer-contacts:before {
+		height: 100%;
+	}
+	.bottom-footer-right {
+		margin: 0 auto;
+	}
+	#top,
+	#center,
+	#bottom {
+		width: 100%;
+		overflow: hidden;
+	}
+}
+
+@media (max-width: 632px) {
+	.header-menu {
+		width: 100vw;
+		right: -100vw;
+	}
+	.header-menu.active {
+		right: 0;
+	}
+	.top-block-imgs {
+		margin-left: -200px;
+		transform: scale(0.7);
+	}
+	.top-video video {
+		transform: scale(2);
+	}
+	.top-video img {
+		width: 250px;
+		margin-left: 0;
+		top: 70px;
+	}
+	.top-about-block {
+		display: block;
+	}
+	.top-about-block img {
+		width: 100%;
+		height: 320px;
+		object-fit: cover;
+	}
+	.top-about-block .text {
+        margin-left: 0;
+        padding: 40px;
+    }
+    .center-slider .swiper-slide {
+    	opacity: 0;
+    }
+    .center-slider .swiper-slide.swiper-slide-active {
+		transform: scale(1.25);
+		opacity: 1;
+	}
+	.center-slider .swiper-slide.swiper-slide-active .bg {
+		opacity: 1;
+		transform: scale(1);
+	}
+	.center-slider .swiper-slide .img {
+		width: 250px;
+	}
+	.center-slider .swiper-slide.swiper-slide-active .img {
+		transform: translate(0px, -30px);
+	}
+	.center-slider .slider {
+		overflow: visible;
+	}
+	.center-slider .prev img, 
+	.center-slider .next img {
+		width: 100%;
+	}
+	.center-slider .prev, .center-slider .next {
+		width: 40px;
+		position: relative;
+		z-index: 5;
+	}
+	.center-slider .slider {
+		width: 60%;
+	}
+	#bottom {
+		padding: 40px 20px;
+	}
+	.bottom-about-block .text {
+		padding: 20px;
+	}
+	.bottom-footer:before {
+		left: -20px;
+	}
+	.bottom-footer-contacts a, .bottom-footer-contacts p {
+		display: block;
+	}
+	.bottom-footer-contacts a img, .bottom-footer-contacts p img {
+		margin-right: 8px;
+		margin-bottom: 0px;
+	}
+	.center-h {
+		font-size: 25px;
+	}
+	.bottom-footer-right .logo img {
+		transform: scale(1.5);
+	}
+	.bottom-footer-contacts {
+		position: relative;
+		z-index: 4;
+	}
+}
+
+@media (max-width: 490px) {
+	.top-video video {
+		transform: scale(2.5);
+	}
+	.top-block-imgs {
+		margin-left: -230px;
+		transform: scale(0.6);
+	}
+	.top-about {
+		margin-top: 20px;
+	}
+	.top-about-block img {
+		height: 240px;
+	}
+	.top-about-block .text p,
+	.bottom-about-block .text p {
+		font-size: 18px;
+	}
+	#center .header-sec {
+		margin-left: 20px;
+		margin-bottom: 20px;
+	}
+	.center-slider .swiper-slide .img {
+		width: 150px;
+	}
+	.bottom-about-block .video {
+		height: 240px;
+	}
+	.bottom-about-block {
+		margin-bottom: 80px;
+	}
+}
+
+@media (max-width: 430px) {
+	.top-block-imgs {
+		margin-left: -280px;
+	}
+	.header-menu ul li a {
+		font-size: 24px;
+	}
+}
