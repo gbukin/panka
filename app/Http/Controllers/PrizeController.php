@@ -29,10 +29,10 @@ class PrizeController extends Controller
         $prize = Prize::where('lottery_link_id', $link->id)->first();
 
         if ($prize) {
-            echo 'You win: ' . $prize->name;
-        } else {
-            echo 'No prize, good luck in next time';
+            return redirect($prize->html_url);
         }
+
+        abort(404);
     }
 
     public function award(Request $request, Prize $prize)
