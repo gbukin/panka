@@ -156,7 +156,7 @@ onMounted(() => {
 
                         <p class="p-2">{{ prize.status }}</p>
                         <p class="p-2 col-span-2 text-right">
-                            <span v-if="lottery.is_draw">
+                            <span v-if="lottery.is_draw && lottery.ready">
                                 <span v-if="prize.redeem">{{ prize.redeem }}, {{ prize.redeem_at }}</span>
                                 <span v-else>
                                     <PrimaryButton @click="openAwardDialog(prize)">Give prize</PrimaryButton>

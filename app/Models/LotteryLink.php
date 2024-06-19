@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -9,6 +10,8 @@ use Illuminate\Http\UploadedFile;
 
 class LotteryLink extends Model
 {
+    use HasTimestamps;
+
     protected $guarded = ['id'];
 
     public function lottery(): BelongsTo

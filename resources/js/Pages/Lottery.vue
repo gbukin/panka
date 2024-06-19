@@ -82,11 +82,11 @@ onMounted(() => {
                         <p class="p-2">{{ lottery.created }}</p>
                         <p class="p-2">{{ lottery.ready ? 'Yes' : 'No' }}</p>
                         <a :href="route('lottery.show', {'lottery': lottery.id})"
-                           :class="{'col-span-2': lottery.ready}"
+                           :class="{'col-span-2': lottery.ready || !lottery.is_draw}"
                            class="flex items-center justify-center md:hover:text-green-800 mt-2 md:mt-0">
                             <button class="w-full h-full rounded bg-slate-700 text-white shadow hover:bg-slate-600 border border-r-white py-2">Open</button>
                         </a>
-                        <a :href="route('lottery.prize.edit', {'lottery': lottery.id})" v-if="!lottery.ready" class="flex items-center justify-center md:hover:text-green-800 mt-2 md:mt-0 col-span-5 md:col-span-1">
+                        <a :href="route('lottery.prize.edit', {'lottery': lottery.id})" v-if="!lottery.ready && lottery.is_draw" class="flex items-center justify-center md:hover:text-green-800 mt-2 md:mt-0 col-span-5 md:col-span-1">
                             <button class="w-full h-full rounded bg-slate-700 text-white shadow hover:bg-slate-600 border border-r-white py-2">Edit</button>
                         </a>
                     </div>

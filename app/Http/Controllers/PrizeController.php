@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LotteryLink;
 use App\Models\Prize;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PrizeController extends Controller
 {
@@ -29,7 +30,17 @@ class PrizeController extends Controller
         $prize = Prize::where('lottery_link_id', $link->id)->first();
 
         if ($prize) {
-            return redirect($prize->html_url);
+            $url = $prize->html_url;
+
+            if (!str_starts_with($url, 'http://') && !str_starts_with($url, 'https://')) {
+                $url = 'https://' . $url;
+            }
+
+            if (str_starts_with($url, 'http://')) {
+                $url = str_replace('http://', 'https://', $url);
+            }
+
+            return Redirect::to($url);
         }
 
         abort(404);
