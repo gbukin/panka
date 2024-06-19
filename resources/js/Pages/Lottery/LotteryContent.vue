@@ -152,7 +152,15 @@ onMounted(() => {
                             {{ prize.html }}
                         </p>
 
-                        <p class="p-2 col-span-3">{{ prize.url }}</p>
+                        <p class="p-2 col-span-3">
+                            <span v-if="prize.url">
+                                {{ prize.url }}
+                            </span>
+                            <span v-else
+                                  class="text-gray-400 text-center block">
+                                Please, click "Draw all" first
+                            </span>
+                        </p>
 
                         <p class="p-2">{{ prize.status }}</p>
                         <p class="p-2 col-span-2 text-right">
