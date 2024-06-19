@@ -83,7 +83,7 @@ class LotteryController extends Controller
     public function draw(Lottery $lottery)
     {
         if ($lottery->is_draw === 0) {
-            $lottery->is_draw = 1;
+            $lottery->is_draw = true;
             $lottery->save();
 
             Prize::fillUrl($lottery->id);
