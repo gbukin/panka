@@ -69,7 +69,7 @@ onMounted(() => {
                         <p class="p-2">#</p>
                         <p class="p-2 col-span-6">Name</p>
                         <p class="p-2">Created</p>
-                        <p class="p-2">Ready</p>
+                        <p class="p-2">Draw accepted</p>
                         <p class="p-2"></p>
                         <p class="p-2"></p>
                     </div>
