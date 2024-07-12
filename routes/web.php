@@ -17,8 +17,13 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
+Route::get('/lazada-lottery', [LazadaLotteryController::class, 'index']);
+
 Route::middleware(['auth'])->group(function () {
-    Route::get('/lazada-lottery-table', [LazadaLotteryController::class, 'index'])->name('lazada-lottery-table');
+    Route::get('/lazada-lottery-content', [LazadaLotteryController::class, 'adminIndex'])
+        ->name('lazada-lottery-table');
+    Route::post('/lazada-lottery-content', [LazadaLotteryController::class, 'adminStore'])
+        ->name('lazada-lottery-store');
 });
 
 require __DIR__.'/auth.php';
