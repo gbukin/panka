@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LazadaLotteryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,3 +16,9 @@ Route::get('/', function () {
 
     return view('index');
 })->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/lazada-lottery-table', [LazadaLotteryController::class, 'index'])->name('lazada-lottery-table');
+});
+
+require __DIR__.'/auth.php';
