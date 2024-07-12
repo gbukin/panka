@@ -37,6 +37,7 @@
         <thead>
         <caption class="font-bold text-xl text-gold md:mb-6">Lazada lottery</caption>
         <tr class="text-gold border-b border-gold">
+            <td class="p-3"></td>
             <td class="p-3">Order date</td>
             <td class="p-3">Order number</td>
             <td class="p-3">Customer name</td>
@@ -47,6 +48,7 @@
         <tbody>
         @foreach($items as $item)
             <tr class="text-white">
+                <td class="border-b border-gray-500/60 p-3">{{$item['id']}}</td>
                 <td class="border-b border-gray-500/60 p-3">{{$item['order_date']}}</td>
                 <td class="border-b border-gray-500/60 p-3">{{$item['order_number']}}</td>
                 <td class="border-b border-gray-500/60 p-3">{{$item['customer_name']}}</td>
