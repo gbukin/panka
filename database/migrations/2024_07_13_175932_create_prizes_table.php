@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('prizes', function (Blueprint $table) {
-            $table->string('status')->nullable(false)->default('Not drawn');
-            $table->string('html_url')->nullable();
+        Schema::create('prizes', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->nullable(false);
+            $table->string('image_name')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -22,9 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('prizes', function (Blueprint $table) {
-            $table->dropColumn('status');
-            $table->dropColumn('html_url');
-        });
+        Schema::dropIfExists('prizes');
     }
 };

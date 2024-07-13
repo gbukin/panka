@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Lottery;
 use App\Models\LotteryLink;
+use App\Models\LotteryPrize;
 use App\Models\Prize;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
@@ -36,7 +38,13 @@ class LotteryController extends Controller
 
     public function create()
     {
-        return Inertia::render('Lottery/Create');
+        $prizes = Prize::all()->map(function (Prize $prize) {
+            $prize->image_path = Storage::url('prizes/' . $prize->image_name);
+            unset($prize->image_name);
+            return $prize;
+        });
+
+        return Inertia::render('Lottery/Create')->with(['prizes' => $prizes]);
     }
 
     public function store(Request $request)
@@ -74,7 +82,7 @@ class LotteryController extends Controller
 
         LotteryLink::insert($links);
 
-        Prize::createFromRequest($lottery->id, $request->post('prizes'));
+        LotteryPrize::createFromRequest($lottery->id, $request->post('prizes'));
 
 
         return redirect()->route('lotteries');
@@ -86,7 +94,7 @@ class LotteryController extends Controller
             $lottery->is_draw = true;
             $lottery->save();
 
-            Prize::fillUrl($lottery->id);
+            LotteryPrize::fillUrl($lottery->id);
         }
 
         return response()->json();
@@ -97,7 +105,7 @@ class LotteryController extends Controller
         $prizes = $lottery->prizes()
             ->with('link')
             ->get()
-            ->map(function (Prize $prize) {
+            ->map(function (LotteryPrize $prize) {
                 return [
                     'id' => $prize->id,
                     'name' => $prize->name,
@@ -136,7 +144,7 @@ class LotteryController extends Controller
         $prizes = $lottery->prizes()
             ->with('link')
             ->get()
-            ->map(function (Prize $prize) {
+            ->map(function (LotteryPrize $prize) {
                 return ['id' => $prize->id, 'name' => $prize->name, 'url' => $prize->link?->url, 'html' => $prize->html_url, 'status' => $prize->status];
             })
             ->values();

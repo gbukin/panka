@@ -9,11 +9,11 @@
     <link rel="icon" type="image/png" href="{{asset('favicon_sHL_icon.ico')}}">
     <link rel="stylesheet" href="{{asset('fonts/stylesheet.css')}}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/swiper-bundle.min.css">
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="{{asset('css/reset.css')}}">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('css/swiper-bundle.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/jquery.fancybox.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/media.css')}}">
 </head>
 <body>
 

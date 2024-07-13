@@ -26,6 +26,12 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('lottery.create')" :active="route().current('lottery.create')">
                                     {{ trans('admin.lottery_create') }}
                                 </NavLink>
+                                <NavLink :href="route('prizes.index')" :active="route().current('prizes.index')">
+                                    {{ trans('admin.prizes') }}
+                                </NavLink>
+                                <NavLink :href="route('prizes.create')" :active="route().current('prizes.create')">
+                                    {{ trans('admin.prize_create') }}
+                                </NavLink>
                             </div>
                         </div>
 

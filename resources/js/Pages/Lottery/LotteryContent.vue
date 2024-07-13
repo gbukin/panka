@@ -18,35 +18,6 @@ const props = defineProps({
 });
 
 const htmlInputState = ref([]);
-const lastOpenedInputKey = ref(null);
-const lastOpenedInputValue = ref(null);
-
-function openInput(key) {
-    const oldKey = lastOpenedInputKey.value;
-    const oldValue = lastOpenedInputValue.value;
-
-    if (oldKey !== null) {
-        htmlInputState.value[oldKey] = false;
-
-        if (oldValue !== props.prizes[oldKey]) {
-            axios.post(
-                route('lottery.prize.update', {'prize': props.prizes[oldKey].id}),
-                {
-                    field: 'html_url',
-                    html_url: props.prizes[oldKey].html
-                }
-            );
-        }
-    }
-
-    if (key === -1) {
-        return;
-    }
-
-    htmlInputState.value[key] = true;
-    lastOpenedInputKey.value = key;
-    lastOpenedInputValue.value = props.prizes[key].html;
-}
 
 function drawLottery() {
     axios.post(route('lottery.draw.all', {lottery: props.lottery.id}))
@@ -73,6 +44,14 @@ function awardPerson()
     let year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
+
+    if (day < 10) {
+        day = '0' + day;
+    }
+
+    if (month < 10) {
+        month = '0' + month;
+    }
 
     awardPrize.value.redeem_at = day + "/" + month + "/" + year;
 
@@ -119,39 +98,17 @@ onMounted(() => {
 
                 <div class="bg-white overflow-hidden shadow-sm">
                     <div
-                        class="px-2 text-center grid grid-cols-10 bg-slate-600 text-white divide-x divide-slate-700 font-bold rounded-t-lg">
+                        class="px-2 text-center grid grid-cols-7 bg-slate-600 text-white divide-x divide-slate-700 font-bold rounded-t-lg">
                         <p class="p-2">Name</p>
-                        <p class="p-2 col-span-3">HTML-page URL</p>
                         <p class="p-2 col-span-3">QR</p>
                         <p class="p-2">Redeem status</p>
                         <p class="p-2 col-span-2"></p>
                     </div>
                     <div v-for="(prize, key) in prizes"
                          :class="{'md:rounded-b-lg': prizes.length === key + 1}"
-                         class="md:px-2 grid grid-cols-10 border border-slate-900">
+                         class="md:px-2 grid grid-cols-7 border border-slate-900">
 
                         <p class="p-2">{{ prize.name }}</p>
-
-                        <p class="p-2 col-span-3 hover:bg-gray-300 cursor-pointer" v-if="!lottery.ready">
-                            <span v-if="!htmlInputState[key]"
-                                  class="flex justify-between"
-                                  @click="openInput(key)">
-                                <span>{{ prize.html }}</span>
-                                <PrimaryButton class="ml-1" @click="openInput(key)">Edit</PrimaryButton>
-                            </span>
-                            <span v-else class="flex items-center">
-                                <TextInput v-model="prize.html"
-                                           class="w-fit p-1"
-                                           @blur="openInput(-1)"
-                                           @keydown.enter="openInput(-1)"
-                                           autofocus/>
-                                <PrimaryButton class="ml-1" @click="openInput(-1)">Save</PrimaryButton>
-                            </span>
-                        </p>
-                        <p class="p-2 col-span-3" v-else>
-                            {{ prize.html }}
-                        </p>
-
                         <p class="p-2 col-span-3">
                             <span v-if="prize.url">
                                 {{ prize.url }}

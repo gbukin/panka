@@ -107,7 +107,7 @@ onMounted(() => {
                     <h2 class="text-lg font-bold mb-2 border-b border-slate-800 w-fit">Prizes</h2>
                     <form @submit.prevent="console.log(prizesForm)" class="space-y-6">
                         <div v-for="(prize, key) of prizesForm.prizes">
-                            <InputLabel :for="'prize_' + key" value="Prize / Amount" />
+                            <InputLabel :for="'prize_' + key" value="LotteryPrize / Amount" />
 
                             <input
                                 type="text"

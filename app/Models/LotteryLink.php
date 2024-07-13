@@ -21,7 +21,7 @@ class LotteryLink extends Model
 
     public function prize(): HasOne
     {
-        return $this->hasOne(Prize::class);
+        return $this->hasOne(LotteryPrize::class);
     }
 
     public static function getLinksFromExcel(UploadedFile|\Symfony\Component\HttpFoundation\File\UploadedFile $file): array

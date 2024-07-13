@@ -74,7 +74,7 @@ onMounted(() => {
     <AuthenticatedLayout>
         <div class="py-12 px-1 md:px-6">
             <section class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-2 px-1 bg-white border rounded shadow">
-                <h1 class="text-2xl text-center my-2">Edit QR to Prize relation</h1>
+                <h1 class="text-2xl text-center my-2">Edit QR to LotteryPrize relation</h1>
                 <hr>
                 <div class="font-bold text-lg mt-2">{{ lottery.name }}</div>
 

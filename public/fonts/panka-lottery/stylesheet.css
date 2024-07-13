@@ -1,0 +1,30 @@
+@font-face {
+	font-family: 'Montserrat Alternates';
+	src: url('MontserratAlternates-Medium.ttf');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Spectral';
+	src: url('Spectral-Medium.ttf');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Tw Cen - Condensed';
+	src: url('Tw-Cen-MT-Condensed-Font.ttf');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Evolventa';
+	src: url('Evolventa-Regular.ttf');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Antiqua';
+	src: url('ofont.ru_Antiqua.ttf');
+	font-weight: 400;
+	font-style: normal;
+}

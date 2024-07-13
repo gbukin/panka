@@ -18,6 +18,6 @@ class Lottery extends Model
 
     public function prizes(): HasMany
     {
-        return $this->hasMany(Prize::class);
+        return $this->hasMany(LotteryPrize::class);
     }
 }

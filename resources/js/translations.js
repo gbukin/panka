@@ -14,6 +14,8 @@ export const en = {
         'lottery': 'Lottery',
         'lotteries': 'Lotteries',
         'lottery_create': 'Create lottery',
+        'prizes': 'Prizes',
+        'prize_create': 'Create prize',
     }
 };
 
@@ -31,6 +33,8 @@ export const th = {
         'lottery': 'thLottery',
         'lotteries': 'thLotteries',
         'lottery_create': 'thCreate lottery',
+        'prizes': 'thPrizes',
+        'prize_create': 'thCreate prize',
     }
 };
 

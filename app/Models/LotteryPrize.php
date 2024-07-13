@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Prize extends Model
+class LotteryPrize extends Model
 {
     protected $guarded = ['id'];
 
@@ -24,8 +24,8 @@ class Prize extends Model
         foreach ($data as $prize) {
             $fields = [
                 'name' => $prize['name'],
+                'prize_id' => $prize['id'],
                 'lottery_id' => $lotteryID,
-                'html_url' => $prize['html_url'],
             ];
 
             $populatedPrizes = array_fill(0, $prize['amount'], $fields);

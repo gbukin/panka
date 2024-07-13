@@ -8,13 +8,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('prizes', function (Blueprint $table) {
+        Schema::create('lottery_prizes', function (Blueprint $table) {
             $table->id();
 
             $table->foreignIdFor(\App\Models\Lottery::class)
                 ->cascadeOnDelete();
 
             $table->string('name');
+
+            $table->foreignIdFor(\App\Models\Prize::class);
 
             $table->foreignIdFor(\App\Models\LotteryLink::class)
                 ->nullable();
@@ -27,6 +29,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('prizes');
+        Schema::dropIfExists('lottery_prizes');
     }
 };

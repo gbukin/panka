@@ -1,10 +1,20 @@
 <script setup>
-import {Head, useForm} from "@inertiajs/vue3";
+import {Head, useForm, usePage} from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import DropdownForPrizes from "@/Components/Selfmade/DropdownForPrizes.vue";
+
+const props = defineProps({
+    prizes: {
+        type: Array,
+        required: true
+    }
+});
+
+const prizes = props.prizes;
 
 const samplePrize = {name: '', amount: 1};
 
@@ -27,7 +37,7 @@ function validatePrizeAmount(key) {
 }
 
 function addPrize() {
-    form.prizes.push({name: '', amount: 1});
+    form.prizes.push({name: '', amount: 1, id: null});
 }
 </script>
 
@@ -76,30 +86,19 @@ function addPrize() {
                         <h2 class="text-lg font-bold mb-2 border-b border-slate-800 w-fit">Prizes</h2>
                         <InputError class="mt-2" :message="form.errors.prizes"/>
                         <div v-for="(prize, key) in form.prizes" class="">
-                            <div class="grid grid-cols-12 gap-x-2">
+                            <div class="grid grid-cols-6 gap-x-2">
                                 <InputLabel :for="'prize_' + key"
                                             class="col-span-4"
                                             value="Prize name"/>
 
                                 <InputLabel :for="'prize_' + key"
-                                            class="col-span-6"
-                                            value="HTML-page URL"/>
-
-                                <InputLabel :for="'prize_' + key"
                                             value="Amount"/>
                             </div>
-                            <div class="grid grid-cols-12 gap-x-2">
-                                <TextInput type="text"
-                                           class="col-span-4"
-                                           placeholder="Write prize name..."
-                                           v-model="form.prizes[key].name"
-                                           required
-                                />
 
-                                <TextInput type="text"
-                                           v-model="form.prizes[key].html_url"
-                                           class="col-span-6"
-                                           required
+                            <div class="grid grid-cols-6 gap-x-2">
+                                <DropdownForPrizes :items="prizes"
+                                                   class="col-span-4"
+                                                   v-on:update:selected="prize.name = $event.name; prize.id = $event.id"
                                 />
 
                                 <TextInput type="number"

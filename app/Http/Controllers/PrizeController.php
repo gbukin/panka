@@ -2,59 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LotteryLink;
 use App\Models\Prize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class PrizeController extends Controller
 {
-    public function update(Request $request, Prize $prize)
+    public function index()
     {
-        if ($request->post('field') === 'html_url') {
-            $prize->html_url = $request->post('html_url');
-        } else {
-            $link = LotteryLink::where('url', $request->post('url'))->first();
+        return Inertia::render('Prize/Index', ['prizes' => Prize::all()]);
+    }
 
-            $prize->lottery_link_id = $link->id;
-        }
+    public function create()
+    {
+        return Inertia::render('Prize/Create');
+    }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'string|required|max:255',
+            'image' => 'file|mimes:jpeg,png,jpg|required',
+        ]);
+
+        $image = $request->file('image');
+
+        $prize = new Prize();
+        $prize->name = $request->name;
         $prize->save();
 
-        return response()->json();
-    }
+        $image_name = 'prize_' . $prize->id . '.' .  $image->getClientOriginalExtension();
 
-    public function redeem(string $url)
-    {
-        $link = LotteryLink::where('url', $url)->first();
-        $prize = Prize::where('lottery_link_id', $link->id)->first();
+        $prize->image_name = $image_name;
+        $prize->save();
 
-        if ($prize) {
-            $url = $prize->html_url;
+        $image->move(storage_path('app/public/prizes'), $image_name);
 
-            if (!str_starts_with($url, 'http://') && !str_starts_with($url, 'https://')) {
-                $url = 'https://' . $url;
-            }
-
-            if (str_starts_with($url, 'http://')) {
-                $url = str_replace('http://', 'https://', $url);
-            }
-
-            return Redirect::to($url);
-        }
-
-        abort(404);
-    }
-
-    public function award(Request $request, Prize $prize)
-    {
-        if ($prize->status !== 'Awarded') {
-            $prize->redeem = $request->post('redeemer');
-            $prize->redeem_at = now();
-            $prize->status = 'Awarded';
-            $prize->save();
-        }
-
-        return response()->json();
+        return \redirect()->route('prizes.index');
     }
 }
