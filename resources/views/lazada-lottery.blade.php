@@ -22,9 +22,20 @@
             }
         }
     </script>
+    <style>
+        #top::after {
+            background: none;
+        }
+        #bottom::before {
+            background: none;
+        }
+        #bottom {
+            background: none;
+        }
+    </style>
 </head>
-<body style="background: #0b0c0c">
-
+<body style="background: rgb(119,0,208);
+background: radial-gradient(circle, rgba(119,0,208,1) 7%, rgba(226,12,124,1) 59%, rgba(0,3,153,1) 98%);">
 <section id="top">
     <div class="top-lines">
         <img src="img/wave1.png" alt="wave1">
@@ -32,37 +43,43 @@
     </div>
 </section>
 
-<section class="relative bg-black z-10 md:p-16 md:pb-10 md:pt-4 md:mx-32 rounded-md border border-gold-thin">
-    <table class="w-full table-auto bg-black">
-        <thead>
-        <caption class="font-bold text-xl text-gold md:mb-6">Lazada lottery</caption>
-        <tr class="text-gold border-b border-gold">
-            <td class="p-3"></td>
-            <td class="p-3">Order date</td>
-            <td class="p-3">Order number</td>
-            <td class="p-3">Customer name</td>
-            <td class="p-3">Delivery city</td>
-            <td class="p-3">Prize given</td>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($items as $item)
-            <tr class="text-white">
-                <td class="border-b border-gray-500/60 p-3">{{$item['id']}}</td>
-                <td class="border-b border-gray-500/60 p-3">{{$item['order_date']}}</td>
-                <td class="border-b border-gray-500/60 p-3">{{$item['order_number']}}</td>
-                <td class="border-b border-gray-500/60 p-3">{{$item['customer_name']}}</td>
-                <td class="border-b border-gray-500/60 p-3">{{$item['delivery_city']}}</td>
-                <td class="border-b border-gray-500/60 p-3">{{$item['prize_given'] ? 'Yes' : 'No'}}</td>
+<div class="z-10 relative">
+    <span class="font-bold text-5xl drop-shadow-lg text-center block text-white md:mb-6">
+        Panka Lottery 11/11
+    </span>
+
+    <section class="relative z-10 md:p-64 md:py-10 rounded-md border border-gold-thin" style="background: rgba(53,50,53,0.3);">
+        <table class="w-full table-auto rounded-md bg-white text-black">
+            <tr class="text-black bg-white font-bold border-b border-black rounded-t-md">
+                <td class="p-1 md:p-3 rounded-tl-md"></td>
+                <td class="p-1 md:p-3">Order date</td>
+                <td class="p-1 md:p-3">Order number</td>
+                <td class="p-1 md:p-3">Customer name</td>
+                <td class="p-1 md:p-3">Delivery city</td>
+                <td class="p-1 md:p-3 rounded-tr-md">Prize given</td>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
-</section>
+            <tbody>
+            @foreach($items as $item)
+                <tr class="text-black">
+                    <td class="border-b border-gray-500/60 p-1 md:p-3 font-bold">{{$item['id']}}</td>
+                    <td class="border-b border-gray-500/60 p-1 md:p-3">{{$item['order_date']}}</td>
+                    <td class="border-b border-gray-500/60 p-1 md:p-3">{{$item['order_number']}}</td>
+                    <td class="border-b border-gray-500/60 p-1 md:p-3">{{$item['customer_name']}}</td>
+                    <td class="border-b border-gray-500/60 p-1 md:p-3">{{$item['delivery_city']}}</td>
+                    <td class="border-b border-gray-500/60 p-1 md:p-3">{{$item['prize_given'] ? 'Yes' : 'No'}}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </section>
+</div>
 
 <section id="bottom">
     <div class="bottom-footer" id="contacts">
         <div class="bottom-footer-contacts">
+            <a href="/rules.jpg" target="_blank">
+                <span class="border-b">Rules</span>
+            </a>
             <a href="tel:+660951860009" class="phone">
                 <img src="img/phone.png" alt="phone">
                 +660951860009
