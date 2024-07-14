@@ -3,6 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
+        "dev-quiet": "vite -l silent",
         "build": "vite build && vite build --ssr",
         "watch": "vite build --watch --mode=development"
     },

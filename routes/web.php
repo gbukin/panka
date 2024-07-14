@@ -3,6 +3,7 @@
 use App\Http\Controllers\LotteryController;
 use App\Http\Controllers\LotteryPrizeController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -67,7 +68,19 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/store', [\App\Http\Controllers\PrizeController::class, 'store'])
             ->name('store');
+
+        Route::get('/edit/{prize}', [\App\Http\Controllers\PrizeController::class, 'edit'])
+            ->name('edit');
+
+        Route::post('/update/{prize}', [\App\Http\Controllers\PrizeController::class, 'update'])
+            ->name('update');
     });
+
+    Route::get('/preview-prize/{prize}', function (\App\Models\Prize $prize) {
+        $imageUrl = Storage::url('prizes/' . $prize->image_name);
+
+        return view('prize-page')->with(['prize_name' => $prize->name, 'prize_image' => $imageUrl]);
+    })->name('preview-prize');
 });
 
 Route::middleware('auth')->group(function () {
