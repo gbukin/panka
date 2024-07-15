@@ -63,7 +63,7 @@
     </div>
     <div class="top-video">
         <video autoplay muted loop playsinline class="lazy">
-            <source data-src="video.mp4" type="video/mp4">
+            <source data-src="video_new.mp4" type="video/mp4">
         </video>
         <img src="img/LOGO header.png" alt="logo">
     </div>
@@ -81,26 +81,20 @@
                 </div>
             </label>
         </div>
-        <div class="top-block-imgs">
-            <img src="img/main-img-item1.png" data-aos="fade-left" data-aos-offset="200" data-aos-delay="4500" data-aos-duration="2000" alt="item1">
-            <img src="img/main-img-item2.png" data-aos="fade-right" data-aos-offset="200" data-aos-delay="1500" data-aos-duration="4000" alt="item2">
-            <img src="img/main-img-item3.png" data-aos="fade-right" data-aos-offset="200" data-aos-delay="1500" data-aos-duration="4000" alt="item3">
-            <img src="img/main-img-item4.png" data-aos="fade-right" data-aos-offset="200" data-aos-delay="1500" data-aos-duration="4000" alt="item4">
-        </div>
-    </div>
-    <div class="top-about" id="about-us">
-        <h2 class="header-sec" data-aos="fade-right" data-aos-offset="200" data-aos-duration="1000" data-translation-key="about_us">ABOUT US</h2>
-        <div class="top-about-block">
-            <img src="img/foto about us.jpg" data-aos="fade-right" data-aos-offset="200" data-aos-duration="2000" alt="about us">
-            <div class="text" data-aos="fade-left" data-aos-offset="200" data-aos-duration="2000">
-                <p data-translation-key="about_us_first_part">
-                    "PANKA" offers amazing flavours that will definitely satisfy even the most discerning gourmets.
-                </p>
-                <p data-translation-key="about_us_second_part">
-                    We invite you to the amazing world
-                    of "PANKA". Become a part of
-                    our inspiring taste journey!
-                </p>
+        <div class="top-about" id="about-us">
+            <h2 class="header-sec" data-aos="fade-right" data-aos-offset="200" data-aos-duration="1000" data-translation-key="about_us">ABOUT US</h2>
+            <div class="top-about-block">
+                <img src="img/foto about us.jpg" data-aos="fade-right" data-aos-offset="200" data-aos-duration="2000" alt="about us">
+                <div class="text" data-aos="fade-left" data-aos-offset="200" data-aos-duration="2000">
+                    <p data-translation-key="about_us_first_part">
+                        "PANKA" offers amazing flavours that will definitely satisfy even the most discerning gourmets.
+                    </p>
+                    <p data-translation-key="about_us_second_part">
+                        We invite you to the amazing world
+                        of "PANKA". Become a part of
+                        our inspiring taste journey!
+                    </p>
+                </div>
             </div>
         </div>
     </div>
