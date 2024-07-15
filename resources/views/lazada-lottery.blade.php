@@ -47,19 +47,19 @@ background: radial-gradient(circle, rgba(119,0,208,1) 7%, rgba(226,12,124,1) 59%
 
 <div class="z-10 relative">
     <img class="absolute md:left-2/3 -top-16 z-[1]"
-        src="{{asset('img/lazada-lottery/iphone.png')}}">
+         src="{{asset('img/lazada-lottery/iphone.png')}}">
 
     <img class="absolute left-16 md:left-1/4 -top-44 md:-top-36"
-        src="{{asset('img/lazada-lottery/air_pods_1.png')}}">
+         src="{{asset('img/lazada-lottery/air_pods_1.png')}}">
 
     <img class="absolute invisible md:visible md:left-[90%] top-32"
          src="{{asset('img/lazada-lottery/air_pods_2.png')}}">
 
     <img class="absolute rotate-45 left-32 md:left-2 -top-36 md:top-10"
-        src="{{asset('img/lazada-lottery/marshall.png')}}">
+         src="{{asset('img/lazada-lottery/marshall.png')}}">
 
-{{--    <img class="absolute left-3/4 md:left-3/4 top-full"--}}
-{{--        src="{{asset('img/lazada-lottery/panka_pack_1.png')}}">--}}
+    {{--    <img class="absolute left-3/4 md:left-3/4 top-full"--}}
+    {{--        src="{{asset('img/lazada-lottery/panka_pack_1.png')}}">--}}
 
     <img class="absolute invisible md:visible left-[40%] -top-1/2"
          src="{{asset('img/lazada-lottery/panka_pack_2.png')}}">
@@ -70,8 +70,7 @@ background: radial-gradient(circle, rgba(119,0,208,1) 7%, rgba(226,12,124,1) 59%
 
     <section class="relative z-10 md:p-64 md:py-10 rounded-md border border-gold-thin"
              style="background: rgba(53,50,53,0.3);">
-        <div class="max-h-[315px]">
-        <table class="w-full table-auto rounded-md bg-white text-black overflow-y-auto">
+        <table class="w-full table-auto rounded-md bg-white text-black">
             <thead>
             <tr class="text-black bg-white font-bold border-b border-black rounded-t-md">
                 <td class="p-1 md:p-3 rounded-tl-md"></td>
@@ -82,7 +81,7 @@ background: radial-gradient(circle, rgba(119,0,208,1) 7%, rgba(226,12,124,1) 59%
                 <td class="p-1 md:p-3 rounded-tr-md">Prize given</td>
             </tr>
             </thead>
-            <tbody class="overflow-y-scroll">
+            <tbody>
             @foreach($items as $item)
                 <tr class="text-black">
                     <td class="border-b border-gray-500/60 p-1 md:p-3 font-bold">{{$item['id']}}</td>
@@ -95,7 +94,6 @@ background: radial-gradient(circle, rgba(119,0,208,1) 7%, rgba(226,12,124,1) 59%
             @endforeach
             </tbody>
         </table>
-        </div>
     </section>
 </div>
 
