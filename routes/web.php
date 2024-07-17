@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\LotteryController;
-use App\Http\Controllers\LotteryPrizeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LazadaLotteryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -22,7 +22,14 @@ Route::view('/panka-lottery', 'panka-lottery');
 Route::get('/redeem/{qr}', [LotteryPrizeController::class, 'redeem'])
     ->name('redeem');
 
+Route::get('/lazada-lottery', [LazadaLotteryController::class, 'index'])
+    ->name('lazada-lottery');
+
 Route::middleware(['auth'])->group(function () {
+    Route::get('/lazada-lottery-content', [LazadaLotteryController::class, 'adminIndex'])
+        ->name('lazada-lottery-table');
+    Route::post('/lazada-lottery-content', [LazadaLotteryController::class, 'adminStore'])
+        ->name('lazada-lottery-store');
     Route::get('/lotteries', function () {
         return Inertia::render('Lottery');
     })->name('lotteries');
@@ -88,4 +95,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

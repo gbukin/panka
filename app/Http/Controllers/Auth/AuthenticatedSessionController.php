@@ -44,7 +44,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('lotteries');
+        return redirect()->route('lazada-lottery-table');
     }
 
     /**

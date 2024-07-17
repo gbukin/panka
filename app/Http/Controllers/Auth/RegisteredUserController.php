@@ -46,6 +46,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('lotteries', absolute: false));
+        return redirect(route('lazada-lottery-table', absolute: false));
     }
 }
