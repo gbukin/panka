@@ -86,17 +86,17 @@ onMounted(() => {
                     <PrimaryButton @click="awardPerson" class="mt-4 md:mt-0 w-full md:w-fit"><span class="mx-auto">Give</span></PrimaryButton>
                 </div>
             </DialogModal>
-            <section class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 py-2 px-1 bg-white border rounded shadow">
-                <h2 class="text-xl text-center mt-4">{{ lottery.name }}</h2>
+            <section class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 py-2 px-1 sm:bg-white sm:border rounded sm:shadow">
+                <h2 class="text-xl text-center my-4 font-bold">Lottery: "{{ lottery.name }}"</h2>
 
-                <hr class="my-4" v-if="!lottery.ready">
+                <hr class="my-4 hidden sm:block" v-if="!lottery.ready">
                 <PrimaryButton v-if="!lottery.is_draw" @click="drawLottery">Draw all</PrimaryButton>
                 <a :href="route('lottery.prize.edit', {lottery: lottery.id})" v-if="lottery.is_draw && !lottery.ready">
                     <PrimaryButton>Edit prize QR</PrimaryButton>
                 </a>
-                <hr class="my-4">
+                <hr class="sm:my-4">
 
-                <div class="bg-white overflow-hidden shadow-sm">
+                <div class="bg-white overflow-hidden shadow-sm hidden sm:block">
                     <div
                         class="px-2 text-center grid grid-cols-7 bg-slate-600 text-white divide-x divide-slate-700 font-bold rounded-t-lg">
                         <p class="p-2">Name</p>
@@ -129,6 +129,34 @@ onMounted(() => {
                             </span>
                         </p>
 
+                    </div>
+                </div>
+            </section>
+            <section class="block sm:hidden space-y-2">
+                <div v-for="prize in prizes">
+                    <p class="font-bold text-center">
+                        Prize: {{prize.name}}
+                    </p>
+                    <div class="p-2 border border-slate-800 rounded bg-white">
+                        <p class="p-2">
+                        <span v-if="prize.url">
+                            <span class="font-bold">QR:</span> {{ prize.url }}
+                        </span>
+                            <span v-else
+                                  class="text-gray-400 text-center block col-span-5">
+                            Please, click "Draw all" first
+                        </span>
+                        </p>
+                        <p class="p-2"><span class="font-bold">Status:</span> {{ prize.status }}</p>
+                        <p class="p-2 col-span-2"
+                           v-if="lottery.is_draw && lottery.ready">
+                            <span v-if="prize.redeem">{{ prize.redeem }}, {{ prize.redeem_at }}</span>
+                            <span v-else>
+                            <PrimaryButton @click="openAwardDialog(prize)" class="w-full">
+                                <span class="mx-auto w-full">Give prize</span>
+                            </PrimaryButton>
+                        </span>
+                        </p>
                     </div>
                 </div>
             </section>

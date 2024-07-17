@@ -1,0 +1,232 @@
+* {
+	box-sizing: border-box;
+}
+html {
+	overflow-x: hidden;
+}
+section {
+	overflow: visible;
+}
+body {
+	overflow-x: hidden;
+	padding-right: 0 !important;
+	transition: .4s;
+	position: relative;
+}
+body:before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle, rgba(119, 0, 208, 1) 7%, rgba(226, 12, 124, 1) 59%, rgba(0, 3, 153, 1) 98%);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+p,a,li,div,button,input,textarea {
+	line-height: 125%;
+	font-family: sans-serif;
+}
+p strong {
+	font-weight: 700;
+}
+a, a:hover, a:active, a:focus, textarea,
+button, input, button:hover, button:active, button:focus,
+input:focus, input:active {
+	text-decoration: none !important;
+	outline: none !important;
+}
+strong {
+	font-weight: 600;
+}
+i {
+	font-style: italic;
+}
+input.button,
+button {
+	border: none;
+}
+a {
+	cursor: pointer;
+}
+
+
+#main {
+	background: url("../../img/lazada-lottery/main-bg.png") no-repeat top -10px center / 100%;
+	min-height: 100vh;
+}
+.main-top {
+	text-align: center;
+	margin-bottom: 10px;
+}
+.main-top img {
+	display: block;
+	margin: 0 auto;
+}
+.main-top-h {
+	font-family: "Akrobat", sans-serif;
+	font-size: 80px;
+	text-transform: uppercase;
+	color: #f1f089;
+	background: url("../../img/lazada-lottery/header-bg.png") no-repeat center center / cover;
+	width: max-content;
+	padding: 20px 40px;
+	margin: 0 auto;
+}
+
+.main-table {
+	background: rgba(53, 50, 53, 0.3);
+	padding: 40px 0;
+	border-top: 1px solid rgba(234,196,95,0.5);
+	border-bottom: 1px solid rgba(234,196,95,0.5);
+}
+.main-table table {
+	width: 72vw;
+	margin: 0 auto;
+	background: #fff;
+	border-radius: 5px;
+}
+.main-table table thead td {
+	padding: 16px;
+	font-weight: 700;
+}
+.main-table table thead tr {
+	border-bottom: 1px solid #000;
+}
+.main-table tbody tr {
+	border-bottom: 1px solid #000;
+}
+.main-table tbody td {
+	padding: 16px;
+}
+
+.bottom-footer {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	width: 818px;
+	margin: 0 auto;
+	padding-bottom: 50px;
+}
+.bottom-footer-right {
+	width: 275px;
+}
+.bottom-footer-right .logo {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 0px;
+}
+.bottom-footer-right .logo img {
+	width: 320px;
+}
+.bottom-footer-right .socials {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin-right: 18px;
+}
+.bottom-footer-right .socials a {
+	margin-left: 22px;
+}
+.bottom-footer-right .socials a img {
+	max-height: 50px;
+}
+.bottom-footer-contacts {
+	text-align: right;
+	margin-right: 80px;
+	position: relative;
+}
+.bottom-footer-contacts:before {
+	content: "";
+	width: 2px;
+	height: calc(100% - 30px);
+	position: absolute;
+	right: -50px;
+	bottom: 0;
+	background-color: #eac45f;
+}
+.bottom-footer-contacts a,
+.bottom-footer-contacts p {
+	font-family: 'Tw Cen - Condensed';
+	font-size: 24px;
+	line-height: 1.2;
+	font-weight: 400;
+	color: #eac45f;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	margin-top: 26px;
+}
+.bottom-footer-contacts a.rules {
+	text-decoration: underline !important;
+}
+.bottom-footer-contacts a img,
+.bottom-footer-contacts p img {
+	margin-right: 15px;
+	margin-bottom: 4px;
+}
+
+@media (max-width: 1530px) {
+	#main {
+		background-size: 1600px;
+	}
+	.main-top img {
+		width: 320px;
+	}
+	.main-top-h {
+		font-size: 40px;
+	}
+	.main-table table {
+		width: calc(100vw - 80px);
+	}
+}
+
+@media (max-width: 1080px) {
+	.bottom-footer {
+		display: block;
+		padding-top: 50px;
+		width: 100%;
+		padding: 40px 10px;
+	}
+	.bottom-footer-contacts:before {
+		height: 100%;
+	}
+	.bottom-footer-right {
+		margin: 0 auto;
+	}
+}
+
+@media (max-width: 830px) {
+	.main-top img {
+		width: 60vw;
+	}
+	.main-top-h {
+		font-size: 8vw;
+		padding: 4vw 8vw;
+	}
+	.main-table {
+		padding: 20px 0;
+	}
+	.main-table table {
+		width: calc(100vw - 40px);
+	}
+	.bottom-footer-contacts a, .bottom-footer-contacts p {
+		display: block;
+	}
+	.main-table table thead td {
+		font-size: 10px;
+		padding: 8px;
+		line-height: 12px;
+	}
+	.main-table tbody td {
+		padding: 8px;
+		font-size: 9px;
+		line-height: 11px;
+	}
+}
+
+@media (max-width: 520px) {
+	#main {
+        background-size: 520px;
+    }
+}

@@ -48,8 +48,9 @@ const imageUrl = ref(null);
                         <p class="p-2">#</p>
                         <p class="p-2 col-span-2">Name</p>
                         <p class="p-2 col-span-2">Image</p>
-                        <p class="p-2">Preview</p>
-                        <p class="p-2">Edit</p>
+                        <p class="p-2 hidden sm:block">Preview</p>
+                        <p class="p-2 hidden sm:block">Edit</p>
+                        <p class="p-2 block sm:hidden">Preview/Edit</p>
                     </div>
                     <div class="grid grid-cols-7 gap-x-2 border-b border-slate-900"
                          v-for="prize in prizes">
@@ -61,12 +62,20 @@ const imageUrl = ref(null);
                                  @click="imageUrl = prize.image"
                             />
                         </p>
-                        <p class="p-2">
+                        <p class="p-2 hidden sm:block">
                             <a :href="route('preview-prize', {prize: prize.id})" target="_blank">
                                 <PrimaryButton>Show</PrimaryButton>
                             </a>
                         </p>
-                        <p class="p-2">
+                        <p class="p-2 hidden sm:block">
+                            <NavLink :href="route('prizes.edit', {prize: prize.id})">
+                                <PrimaryButton>Update</PrimaryButton>
+                            </NavLink>
+                        </p>
+                        <p class="p-2 flex flex-col sm:hidden">
+                            <a :href="route('preview-prize', {prize: prize.id})" target="_blank" class="px-1">
+                                <PrimaryButton>Show</PrimaryButton>
+                            </a>
                             <NavLink :href="route('prizes.edit', {prize: prize.id})">
                                 <PrimaryButton>Update</PrimaryButton>
                             </NavLink>

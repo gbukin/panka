@@ -29,6 +29,10 @@ function addRecords() {
     form.reset();
 }
 
+function givePrize(prize, index) {
+    axios.post()
+}
+
 onMounted(() => {
 });
 
@@ -40,7 +44,7 @@ onMounted(() => {
     <AuthenticatedLayout>
         <div class="py-12 px-1 md:px-6">
             <section class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 py-2 px-1 bg-white border rounded shadow">
-                <form @submit.prevent="addRecords" class="flex gap-x-2">
+                <form @submit.prevent="addRecords" class="flex flex-col lg:flex-row gap-x-2 space-y-2 sm:space-y-0">
                     <div class="flex flex-col">
                         <InputLabel value="Order date"/>
                         <TextInput type="date" v-model="form.order_date" required/>
@@ -60,18 +64,18 @@ onMounted(() => {
 
                     <div class="flex flex-col">
                         <InputLabel value="Amount"/>
-                        <TextInput type="number" class="w-16" min="1" v-model="form.amount" required/>
+                        <TextInput type="number" class="sm:w-16" min="1" v-model="form.amount" required/>
                     </div>
 
-                    <div class="flex flex-col ml-auto">
-                        <span>&nbsp;</span>
-                        <PrimaryButton>Add</PrimaryButton>
+                    <div class="flex flex-col mt-1 sm:mt-0 sm:ml-auto">
+                        <span class="hidden sm:block">&nbsp;</span>
+                        <PrimaryButton><span class="text-center w-full">Add</span></PrimaryButton>
                     </div>
                 </form>
 
                 <hr class="my-4">
 
-                <div class="bg-white overflow-hidden shadow-sm">
+                <div class="bg-white overflow-hidden shadow-sm hidden sm:block">
                     <div
                         class="px-2 text-center grid grid-cols-6 bg-slate-600 text-white divide-x divide-slate-700 font-bold rounded-t-lg">
                         <p class="p-2">Присвоенный номер / <br>Assigned Number</p>
@@ -81,7 +85,7 @@ onMounted(() => {
                         <p class="p-2">Город доставки / <br>Delivery city</p>
                         <p class="p-2">Приз выдан / <br>Prize given</p>
                     </div>
-                    <div v-for="(item, key) in items"
+                    <div v-for="(item, key) in items" v-if="items.length"
                          class="md:px-2 grid grid-cols-6 border border-slate-900">
 
                         <p class="p-2 ml-4">{{ item.id }}</p>
@@ -90,9 +94,52 @@ onMounted(() => {
                         <p class="p-2 ml-4">{{ item.customer_name }}</p>
                         <p class="p-2 ml-4">{{ item.delivery_city }}</p>
                         <p class="p-2 ml-4">
-                            <PrimaryButton v-if="item.prize_given === 0">Give</PrimaryButton>
+                            <PrimaryButton @click="givePrize(item, key)"
+                                           v-if="item.prize_given === 0">
+                                Give
+                            </PrimaryButton>
                             <PrimaryButton v-else class="bg-green-600 pointer-events-none" disabled>Given</PrimaryButton>
                         </p>
+                    </div>
+                    <div v-else>
+                        <div class="p-2 text-center">No records found</div>
+                    </div>
+                </div>
+
+                <div class="block sm:hidden space-y-4">
+                    <div class="flex flex-col divide-y divide-slate-700 border border-slate-800 rounded-md shadow-md"
+                         v-for="item in items"
+                         v-if="items.length">
+                        <div class="grid grid-cols-2">
+                            <p class="p-2 bg-slate-300">Присвоенный номер / <br>Assigned Number</p>
+                            <p class="p-2 ml-4">{{ item.id }}</p>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <p class="p-2 bg-slate-300">Дата заказа / <br>Order date</p>
+                            <p class="p-2 ml-4">{{ item.order_date }}</p>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <p class="p-2 bg-slate-300">Номер заказа / <br>Order number</p>
+                            <p class="p-2 ml-4">{{ item.order_number }}</p>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <p class="p-2 bg-slate-300">Имя заказчика / <br>Customer name</p>
+                            <p class="p-2 ml-4">{{ item.customer_name }}</p>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <p class="p-2 bg-slate-300">Город доставки / <br>Delivery city</p>
+                            <p class="p-2 ml-4">{{ item.delivery_city }}</p>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <p class="p-2 bg-slate-300">Приз выдан / <br>Prize given</p>
+                            <p class="p-2 ml-4">
+                                <PrimaryButton v-if="item.prize_given === 0">Give</PrimaryButton>
+                                <PrimaryButton v-else class="bg-green-600 pointer-events-none" disabled>Given</PrimaryButton>
+                            </p>
+                        </div>
+                    </div>
+                    <div v-else>
+                        No records found
                     </div>
                 </div>
             </section>

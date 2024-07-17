@@ -109,8 +109,10 @@
 </section>
 
 <section id="prizes">
-    <h2 class="header-sec" data-aos="fade-up" data-aos-offset="200" data-aos-duration="1500"><span
-            data-lang="en"></span><span data-lang="ru">ПРИЗЫ</span></h2>
+    <h2 class="header-sec" data-aos="fade-up" data-aos-offset="200" data-aos-duration="1500">
+        <span data-lang="en">PRIZES</span>
+        <span data-lang="ru">ПРИЗЫ</span>
+    </h2>
     <div class="prizes-items">
         <div class="prizes-item" data-aos="fade-up" data-aos-offset="200" data-aos-delay="500" data-aos-duration="1500">
             <img src="{{asset('img/lucky-panka/note2.png')}}" alt="prize">

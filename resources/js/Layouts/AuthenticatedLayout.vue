@@ -32,6 +32,10 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('prizes.create')" :active="route().current('prizes.create')">
                                     {{ trans('admin.prize_create') }}
                                 </NavLink>
+<!--                                <span class="h-full border-r border-slate-900 hidden md:block">&nbsp;</span>-->
+                                <NavLink :href="route('lazada-lottery-table')" :active="route().current('lazada-lottery-table')">
+                                    {{ trans('admin.lazada-lottery-table') }}
+                                </NavLink>
                             </div>
                         </div>
 
@@ -130,6 +134,10 @@ const showingNavigationDropdown = ref(false);
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('prizes.create')" :active="route().current('prizes.create')">
                             {{ trans('admin.prize_create') }}
+                        </ResponsiveNavLink>
+                        <span class="block border-t border-slate-900">&nbsp;</span>
+                        <ResponsiveNavLink :href="route('lazada-lottery-table')" :active="route().current('lazada-lottery-table')">
+                            {{ trans('admin.lazada-lottery-table') }}
                         </ResponsiveNavLink>
                     </div>
 

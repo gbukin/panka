@@ -35,7 +35,7 @@ onMounted(() => {
 
     <AuthenticatedLayout>
         <div class="py-12 px-1 md:px-6">
-            <section class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-2 px-1 bg-white border rounded shadow">
+            <section class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-2 px-1 bg-transparent sm:bg-white sm:border rounded sm:shadow">
                 <div class="flex justify-around items-center gap-x-2 mb-4">
                     <div id="createLottery">
                         <a :href="route('lottery.create')">
@@ -63,7 +63,7 @@ onMounted(() => {
                     </div>
                 </div>
 
-                <div class="bg-white overflow-hidden shadow-sm">
+                <div class="bg-white overflow-hidden shadow-sm hidden lg:block">
                     <div
                         class="px-2 text-center grid grid-cols-11 bg-slate-600 text-white divide-x divide-slate-700 font-bold rounded-t-lg">
                         <p class="p-2">#</p>
@@ -93,6 +93,34 @@ onMounted(() => {
                     <div v-else
                          class="font-bold border border-slate-800 rounded-b-lg text-center py-4">
                         No lotteries created yet
+                    </div>
+                </div>
+
+                <div class="bg-white shadow-sm my-2 border border-slate-800 p-3 rounded-md block lg:hidden" v-for="lottery in lotteries">
+                    <div>
+                        <p class="p-2 text-center w-full font-bold"># {{ lottery.id }}. Lottery: "{{lottery.name}}"</p>
+                    </div>
+                    <div class="flex flex-row">
+                        <p class="p-2">Created:</p>
+                        <p class="p-2">{{ lottery.created }}</p>
+                    </div>
+                    <div class="flex flex-row">
+                        <p class="p-2">Draw accepted:</p>
+                        <p class="p-2">{{ lottery.ready ? 'Yes' : 'No' }}</p>
+                    </div>
+                    <div>
+                        <p class="p-2"></p>
+                        <a :href="route('lottery.show', {'lottery': lottery.id})"
+                           :class="{'col-span-2': lottery.ready || !lottery.is_draw}"
+                           class="hover:text-green-800">
+                            <button class="w-full h-full rounded bg-slate-700 text-white shadow hover:bg-slate-600 border border-r-white py-2">Open</button>
+                        </a>
+                    </div>
+                    <div class="flex flex-row">
+                        <p class="p-2"></p>
+                        <a :href="route('lottery.prize.edit', {'lottery': lottery.id})" v-if="!lottery.ready && lottery.is_draw" class="flex items-center justify-center md:hover:text-green-800 mt-2 md:mt-0 col-span-5 md:col-span-1">
+                            <button class="w-full h-full rounded bg-slate-700 text-white shadow hover:bg-slate-600 border border-r-white py-2">Edit</button>
+                        </a>
                     </div>
                 </div>
             </section>

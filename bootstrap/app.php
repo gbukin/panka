@@ -16,7 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
 
-        //
+        $middleware->redirectTo(
+            users: '/lotteries'
+        );
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

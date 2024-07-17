@@ -12,7 +12,6 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
-Route::redirect('/lucky-panka', '/lucky-panka?en');
 Route::view('/lucky-panka', 'lucky-panka');
 
 Route::get('/redeem/{qr}', [LotteryPrizeController::class, 'redeem'])
@@ -26,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('lazada-lottery-table');
     Route::post('/lazada-lottery-content', [LazadaLotteryController::class, 'adminStore'])
         ->name('lazada-lottery-store');
+
     Route::get('/lotteries', function () {
         return Inertia::render('Lottery');
     })->name('lotteries');

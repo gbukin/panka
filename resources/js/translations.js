@@ -16,6 +16,7 @@ export const en = {
         'lottery_create': 'Create lottery',
         'prizes': 'Prizes',
         'prize_create': 'Create prize',
+        'lazada-lottery-table': 'Lazada lottery',
     }
 };
 
@@ -35,6 +36,7 @@ export const th = {
         'lottery_create': 'thCreate lottery',
         'prizes': 'thPrizes',
         'prize_create': 'thCreate prize',
+        'lazada-lottery-table': 'thLazada lottery',
     }
 };
 
