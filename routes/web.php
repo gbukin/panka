@@ -3,7 +3,6 @@
 use App\Http\Controllers\LotteryController;
 use App\Http\Controllers\LotteryPrizeController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;

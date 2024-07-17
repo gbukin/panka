@@ -9,6 +9,10 @@ class LotteryPrize extends Model
 {
     protected $guarded = ['id'];
 
+    public const STATUS_AWARDED = 'Awarded';
+    public const STATUS_NOT_AWARDED = 'Not awarded';
+    public const STATUS_NOT_DRAWN = 'Not drawn';
+
     public function lottery(): BelongsTo
     {
         return $this->belongsTo(Lottery::class);
@@ -51,7 +55,7 @@ class LotteryPrize extends Model
             }
 
             $prize->lottery_link_id = $lotteryLinkIDs[$key];
-            $prize->status = 'Not awarded';
+            $prize->status = LotteryPrize::STATUS_NOT_AWARDED;
             $prize->save();
 
             unset($lotteryLinkIDs[$key]);

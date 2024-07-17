@@ -32,6 +32,10 @@ class LotteryPrizeController extends Controller
         $lotteryPrize = LotteryPrize::where('lottery_link_id', $lotteryLink->id)->first();
 
         if ($lotteryPrize) {
+            if ($lotteryPrize->status === LotteryPrize::STATUS_AWARDED) {
+                return \redirect()->route('home');
+            }
+
             $prize = Prize::find($lotteryPrize->prize_id);
             $imageUrl = Storage::url('prizes/' . $prize->image_name);
 
@@ -46,7 +50,7 @@ class LotteryPrizeController extends Controller
         if ($prize->status !== 'Awarded') {
             $prize->redeem = $request->post('redeemer');
             $prize->redeem_at = now();
-            $prize->status = 'Awarded';
+            $prize->status = LotteryPrize::STATUS_AWARDED;
             $prize->save();
         }
 

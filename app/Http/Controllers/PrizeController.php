@@ -64,13 +64,15 @@ class PrizeController extends Controller
             'image' => 'file|mimes:jpeg,png,jpg|required',
         ]);
 
+        Storage::disk('public')->delete('prizes/' . $prize->image_name);
+
         $image = $request->file('image');
-
-        $prize->name = $request->name;
-        $prize->save();
-
         $image_name = 'prize_' . $prize->id . '.' . $image->getClientOriginalExtension();
         $image->move(storage_path('app/public/prizes'), $image_name);
+
+        $prize->name = $request->name;
+        $prize->image_name = $image_name;
+        $prize->save();
 
         return \redirect()->route('prizes.index');
     }

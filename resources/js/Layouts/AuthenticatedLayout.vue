@@ -122,6 +122,15 @@ const showingNavigationDropdown = ref(false);
                         <ResponsiveNavLink :href="route('lotteries')" :active="route().current('lotteries')">
                             Lotteries
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('lottery.create')" :active="route().current('lottery.create')">
+                            {{ trans('admin.lottery_create') }}
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('prizes.index')" :active="route().current('prizes.index')">
+                            {{ trans('admin.prizes') }}
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('prizes.create')" :active="route().current('prizes.create')">
+                            {{ trans('admin.prize_create') }}
+                        </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->

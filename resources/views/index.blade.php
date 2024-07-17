@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>
-        Сухари
+        Panka Snacks
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="{{asset('favicon_sHL_icon.ico')}}">
