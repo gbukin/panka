@@ -98,7 +98,7 @@ a {
 	content: "";
 	width: 105%;
 	height: 100%;
-	background: url("../img/backgraund body.png") no-repeat top left -10px / cover;
+	background: url("../../img/lucky-panka/backgraund body.png") no-repeat top left -10px / cover;
 	position: absolute;
 	top: 80px;
 	left: 0;
@@ -116,7 +116,7 @@ a {
 	content: "";
 	width: 629px;
 	height: 629px;
-	background: url("../img/shadow grenki header.png") no-repeat center center / cover;
+	background: url("../../img/lucky-panka/shadow grenki header.png") no-repeat center center / cover;
 	position: absolute;
 	top: -50px;
 	left: -180px;
@@ -270,7 +270,7 @@ a {
 }
 .top-video video {
 	width: 100%;
-	background: url("../img/red backgraund.png") no-repeat top left / 100%;
+	background: url("../../img/lucky-panka/red backgraund.png") no-repeat top left / 100%;
 }
 .top-video img {
 	width: 322px;
@@ -648,7 +648,7 @@ a {
 /* PRIZES */
 
 #prizes {
-	background: #000 url("../../img/panka-lottery/Backgraund wave PRIZES.png") no-repeat bottom left / 100%;
+	background: #000 url("../../img/lucky-panka/Backgraund wave PRIZES.png") no-repeat bottom left / 100%;
 	padding: 160px 100px 40px 100px;
 	position: relative;
 	z-index: 2;
@@ -770,7 +770,7 @@ a {
 #gift {
 	margin: 0 auto;
 	height: 100%;
-	background: #0b0b0a url("../../img/panka-lottery/pocket/Wave2 tablet.png") no-repeat bottom -20vw left / 100%;
+	background: #0b0b0a url("../../img/lucky-panka/pocket/Wave2 tablet.png") no-repeat bottom -20vw left / 100%;
 }
 .gift-main {
 	width: 1396px;
@@ -878,13 +878,13 @@ a {
 	margin-bottom: 14px;
 }
 .gift-list-item:nth-child(1) {
-	background: url("../../img/panka-lottery/pocket/backgraund 1.png") no-repeat center center / cover;
+	background: url("../../img/lucky-panka/pocket/backgraund 1.png") no-repeat center center / cover;
 }
 .gift-list-item:nth-child(2) {
-	background: url("../../img/panka-lottery/pocket/backgraund 2.png") no-repeat center center / cover;
+	background: url("../../img/lucky-panka/pocket/backgraund 2.png") no-repeat center center / cover;
 }
 .gift-list-item:nth-child(3) {
-	background: url("../../img/panka-lottery/pocket/backgraund 3.png") no-repeat center center / cover;
+	background: url("../../img/lucky-panka/pocket/backgraund 3.png") no-repeat center center / cover;
 }
 .gift-list-item .text {
 	display: flex;
@@ -956,7 +956,7 @@ a {
     color: #eac45f;
     font-size: 30px;
     padding-left: 42px;
-    background: url(../../img/panka-lottery/pocket/phone.png) no-repeat center left / 34px;
+    background: url(../../img/lucky-panka/pocket/phone.png) no-repeat center left / 34px;
     margin-left: 10px;
 }
 .gift-contacts-left > img {

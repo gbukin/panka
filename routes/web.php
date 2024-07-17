@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LotteryController;
+use App\Http\Controllers\LotteryPrizeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LazadaLotteryController;
 use Illuminate\Support\Facades\Route;
@@ -11,13 +12,8 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
-Route::get('/tst', function () {
-    $prize = \App\Models\Prize::find(4);
-
-    return view('prize-page')->with(['prize_name' => $prize->name, 'prize_image' => Storage::url('prizes/' . $prize->image_name)]);
-});
-
-Route::view('/panka-lottery', 'panka-lottery');
+Route::redirect('/lucky-panka', '/lucky-panka?en');
+Route::view('/lucky-panka', 'lucky-panka');
 
 Route::get('/redeem/{qr}', [LotteryPrizeController::class, 'redeem'])
     ->name('redeem');
