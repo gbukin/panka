@@ -51,6 +51,9 @@
             <a href="#premium" data-translation-key="premium_quality">PREMIUM QUALITY</a>
         </li>
         <li>
+            <a href="{{route('lazada-lottery')}}" data-translation-key="lazada_lottery">LAZADA LOTTERY</a>
+        </li>
+        <li>
             <a href="#contacts" data-translation-key="contacts">CONTACTS</a>
         </li>
     </ul>

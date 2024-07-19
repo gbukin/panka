@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>
-        Админка
+        Panka Lottery 11/11
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="favicon_sHL_icon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{asset('fonts/lazada-lottery/stylesheet.css')}}">
     <link rel="stylesheet" href="{{asset('css/lazada-lottery/reset.css')}}">
     <link rel="stylesheet" href="{{asset('css/lazada-lottery/main.css')}}">
@@ -22,7 +23,7 @@
         <table class="w-full table-auto rounded-md bg-white text-black">
             <thead>
             <tr class="text-black bg-white font-bold border-b border-black rounded-t-md">
-                <td class="p-1 md:p-3 rounded-tl-md"></td>
+                <td class="p-1 md:p-3 rounded-tl-md">#</td>
                 <td class="p-1 md:p-3">Order date</td>
                 <td class="p-1 md:p-3">Order number</td>
                 <td class="p-1 md:p-3">Customer name</td>
@@ -31,14 +32,14 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($items as $item)
+            @foreach($items as $index => $item)
                 <tr class="text-black">
-                    <td class="border-b border-gray-500/60 p-1 md:p-3 font-bold">{{$item['id']}}</td>
-                    <td class="border-b border-gray-500/60 p-1 md:p-3">{{$item['order_date']}}</td>
-                    <td class="border-b border-gray-500/60 p-1 md:p-3">{{$item['order_number']}}</td>
-                    <td class="border-b border-gray-500/60 p-1 md:p-3">{{$item['customer_name']}}</td>
-                    <td class="border-b border-gray-500/60 p-1 md:p-3">{{$item['delivery_city']}}</td>
-                    <td class="border-b border-gray-500/60 p-1 md:p-3">{{$item['prize_given'] ? 'Yes' : 'No'}}</td>
+                    <td class="p-1 md:p-3 text-3xl text-blue-600 font-bold">{{$index + 1}}</td>
+                    <td class="p-1 md:p-3">{{$item['order_date']}}</td>
+                    <td class="p-1 md:p-3">{{$item['order_number']}}</td>
+                    <td class="p-1 md:p-3">{{$item['customer_name']}}</td>
+                    <td class="p-1 md:p-3">{{$item['delivery_city']}}</td>
+                    <td class="p-1 md:p-3">{{$item['prize_given'] ? 'Yes' : 'No'}}</td>
                 </tr>
             @endforeach
             </tbody>
@@ -46,7 +47,7 @@
     </div>
     <div class="bottom-footer" id="contacts">
         <div class="bottom-footer-contacts">
-            <a href="#" class="rules">
+            <a href="{{asset('img/lazada-lottery/rules.jpg')}}" class="rules">
                 Rules
             </a>
             <a href="tel:+660951860009" class="phone">
