@@ -25,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('lazada-lottery-table');
     Route::post('/lazada-lottery-content', [LazadaLotteryController::class, 'adminStore'])
         ->name('lazada-lottery-store');
+    Route::post('/lazada-lottery-give/{prize}', [LazadaLotteryController::class, 'adminGive'])
+        ->name('lazada-lottery-give');
 
     Route::get('/lotteries', function () {
         return Inertia::render('Lottery');

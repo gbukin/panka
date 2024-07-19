@@ -39,4 +39,14 @@ class LazadaLotteryController extends Controller
 
         return Redirect::route('lazada-lottery-table');
     }
+
+    public function adminGive(LazadaLottery $prize)
+    {
+        if (!empty($prize) && !$prize->prize_given) {
+            $prize->prize_given = true;
+            $prize->save();
+        }
+
+        return response()->json();
+    }
 }

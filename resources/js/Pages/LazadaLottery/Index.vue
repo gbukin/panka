@@ -30,7 +30,9 @@ function addRecords() {
 }
 
 function givePrize(prize, index) {
-    axios.post()
+    axios.post(route('lazada-lottery-give', {prize: prize})).then(() => {
+        props.items[index].prize_given = 1;
+    });
 }
 
 onMounted(() => {
@@ -108,7 +110,7 @@ onMounted(() => {
 
                 <div class="block sm:hidden space-y-4">
                     <div class="flex flex-col divide-y divide-slate-700 border border-slate-800 rounded-md shadow-md"
-                         v-for="item in items"
+                         v-for="(item, key) in items"
                          v-if="items.length">
                         <div class="grid grid-cols-2">
                             <p class="p-2 bg-slate-300">Присвоенный номер / <br>Assigned Number</p>
@@ -133,7 +135,10 @@ onMounted(() => {
                         <div class="grid grid-cols-2">
                             <p class="p-2 bg-slate-300">Приз выдан / <br>Prize given</p>
                             <p class="p-2 ml-4">
-                                <PrimaryButton v-if="item.prize_given === 0">Give</PrimaryButton>
+                                <PrimaryButton v-if="item.prize_given === 0"
+                                               @click="givePrize(item, key)">
+                                    Give
+                                </PrimaryButton>
                                 <PrimaryButton v-else class="bg-green-600 pointer-events-none" disabled>Given</PrimaryButton>
                             </p>
                         </div>

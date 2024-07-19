@@ -71,7 +71,7 @@ const th = {
     'about_us': 'เกี่ยวกับเรา',
     'our_flavours': 'รสชาติต่าง ๆ ของเรา',
     'premium_quality': 'คุณภาพระดับพรีเมียม',
-    'lazada_lottery': 'LAZADA LOTTERY',
+    'lazada_lottery': 'ปังค่ะล็อตเตอรี่11/11',
     'contacts': 'ช่องทางติดต่อเรา',
     /* ---------- */
 

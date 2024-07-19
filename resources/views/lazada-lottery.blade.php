@@ -23,7 +23,7 @@
         <table class="w-full table-auto rounded-md bg-white text-black">
             <thead>
             <tr class="text-black bg-white font-bold border-b border-black rounded-t-md">
-                <td class="p-1 md:p-3 rounded-tl-md">#</td>
+                <td class="p-1 md:p-3 rounded-tl-md">Your ID</td>
                 <td class="p-1 md:p-3">Order date</td>
                 <td class="p-1 md:p-3">Order number</td>
                 <td class="p-1 md:p-3">Customer name</td>
