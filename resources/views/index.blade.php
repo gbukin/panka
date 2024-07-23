@@ -205,16 +205,16 @@
                 <img src="img/logo.png" alt="logo">
             </a>
             <div class="socials">
-                <a href="https://www.instagram.com/pankasnacks/" target="_blank">
+                <a href="https://www.instagram.com/pankasnacks/" target="_blank" style="z-index: 20">
                     <img src="img/insta.png" alt="insta">
                 </a>
-                <a href="https://www.tiktok.com/@panka.snacks?_t=8lyoOk3xfFf&_r=1" target="_blank">
+                <a href="https://www.tiktok.com/@panka.snacks?_t=8lyoOk3xfFf&_r=1" target="_blank" style="z-index: 20">
                     <img src="img/tik tok.png" alt="tik-tok">
                 </a>
-                <a href="https://www.facebook.com/pankacompany" target="_blank">
+                <a href="https://www.facebook.com/pankacompany" target="_blank" style="z-index: 20">
                     <img src="img/fb.png" alt="fb">
                 </a>
-                <a href="https://www.lazada.co.th/shop/panka-snacks/" target="_blank">
+                <a href="https://www.lazada.co.th/shop/panka-snacks/" target="_blank" style="z-index: 20">
                     <img src="img/lazada2.png" alt="lazada">
                 </a>
             </div>
@@ -224,7 +224,7 @@
 
 <script src="js/all.js"></script>
 <script src="js/swiper-bundle.min.js"></script>
-<script src="js/translate.js"></script>
+<script src="js/translate-main.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init();
