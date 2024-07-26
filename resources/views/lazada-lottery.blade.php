@@ -59,8 +59,10 @@
                 pankacroutons@gmail.com
             </a>
             <a href="https://www.google.com/maps/place/Moo+12,+%D0%9F%D0%B0%D1%82%D1%82%D0%B0%D0%B9%D1%8F,+%D0%91%D0%B0%D0%BD%D0%BB%D0%B0%D0%BC%D1%83%D0%BD%D0%B3,+%D0%A7%D0%BE%D0%BD%D0%B1%D1%83%D1%80%D0%B8+20150,+%D0%A2%D0%B0%D0%B8%D0%BB%D0%B0%D0%BD%D0%B4/@12.901586,100.8520936,15z/data=!4m6!3m5!1s0x3102966037239133:0x458e2f3f35c5312d!8m2!3d12.9014405!4d100.8699897!16s%2Fg%2F1ptx6s_jj?entry=ttu" target="_blank" class="adress">
-                <img src="{{asset('img/lazada-lottery/map.png')}}" alt="map">
-                315/170-172 Moo 12, Nongprue, Pattaya, Thailand, Chon Buri
+                <span>
+                    <img src="{{asset('img/lazada-lottery/map.png')}}" style="display: inline" alt="map">
+                    315/170-172 Moo 12, Nongprue, Pattaya, Thailand, Chon Buri
+                </span>
             </a>
         </div>
         <div class="bottom-footer-right">

@@ -219,7 +219,7 @@ a {
 	.main-table table {
 		width: calc(100vw - 40px);
 	}
-	.bottom-footer-contacts a, .bottom-footer-contacts p {
+	.bottom-footer-contacts p {
 		display: block;
 	}
 	.main-table table thead td {
