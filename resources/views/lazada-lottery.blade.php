@@ -51,7 +51,7 @@
 </section>
 <section id="bottom">
     <div class="bottom-footer" id="contacts">
-        <div class="bottom-footer-contacts flex">
+        <div class="bottom-footer-contacts">
             <a href="tel:+660951860009" class="phone">
                 <img src="{{asset('img/lazada-lottery/phone.png')}}" alt="phone">
                 +660951860009
