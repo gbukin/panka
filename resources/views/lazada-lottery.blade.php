@@ -17,6 +17,9 @@
 <section id="main">
     <div class="main-top">
         <img src="{{asset('img/lazada-lottery/LOGO header.png')}}" alt="logo">
+        <p class="main-top-p">
+            <a href="https://panka.pro/img/lazada-lottery/rules.jpg" class="rules">RULES</a>
+        </p>
         <p class="main-top-h">Panka Lottery 11/11</p>
     </div>
     <div class="main-table">
@@ -45,11 +48,10 @@
             </tbody>
         </table>
     </div>
+</section>
+<section id="bottom">
     <div class="bottom-footer" id="contacts">
-        <div class="bottom-footer-contacts">
-            <a href="{{asset('img/lazada-lottery/rules.jpg')}}" class="rules">
-                Rules
-            </a>
+        <div class="bottom-footer-contacts flex">
             <a href="tel:+660951860009" class="phone">
                 <img src="{{asset('img/lazada-lottery/phone.png')}}" alt="phone">
                 +660951860009

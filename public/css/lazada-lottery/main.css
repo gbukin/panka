@@ -166,6 +166,14 @@ a {
 	margin-bottom: 4px;
 }
 
+.main-top-p{
+    font-size: 2em;
+    padding: 20px;
+    color: #f1f089;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
 @media (max-width: 1530px) {
 	#main {
 		background-size: 1600px;
@@ -198,7 +206,8 @@ a {
 
 @media (max-width: 830px) {
 	.main-top img {
-		width: 60vw;
+		width: 50vw;
+        padding-top: 20px;
 	}
 	.main-top-h {
 		font-size: 8vw;
