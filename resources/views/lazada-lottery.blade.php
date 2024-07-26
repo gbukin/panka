@@ -48,8 +48,6 @@
             </tbody>
         </table>
     </div>
-</section>
-<section id="bottom">
     <div class="bottom-footer" id="contacts">
         <div class="bottom-footer-contacts">
             <a href="tel:+660951860009" class="phone">
