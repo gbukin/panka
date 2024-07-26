@@ -232,6 +232,21 @@ a {
 		font-size: 9px;
 		line-height: 11px;
 	}
+    .bottom-footer-right {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .bottom-footer-right .logo {
+        order: 2;
+        justify-content: center;
+    }
+
+    .bottom-footer-right .socials {
+        order: 1;
+        justify-content: center;
+        margin-right: 0;
+    }
 }
 
 @media (max-width: 520px) {
