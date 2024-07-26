@@ -66,6 +66,9 @@
             </a>
         </div>
         <div class="bottom-footer-right">
+            <a href="/" class="logo">
+                <img src="{{asset('img/lazada-lottery/logo.png')}}" alt="logo">
+            </a>
             <div class="socials">
                 <a href="https://www.instagram.com/pankasnacks/" target="_blank">
                     <img src="{{asset('img/lazada-lottery/insta.png')}}" alt="insta">
@@ -80,9 +83,6 @@
                     <img src="{{asset('img/lazada-lottery/lazada2.png')}}" alt="lazada">
                 </a>
             </div>
-            <a href="/" class="logo">
-                <img src="{{asset('img/lazada-lottery/logo.png')}}" alt="logo">
-            </a>
         </div>
     </div>
 </section>
