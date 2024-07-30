@@ -19,6 +19,7 @@ const form = useForm({
     order_number: null,
     customer_name: null,
     delivery_city: null,
+    phone: null,
     prize_given: 0,
     amount: 1
 });
@@ -48,24 +49,28 @@ onMounted(() => {
             <section class="max-w-screen-2xl mx-auto sm:px-6 lg:px-8 py-2 px-1 bg-white border rounded shadow">
                 <form @submit.prevent="addRecords" class="flex flex-col lg:flex-row gap-x-2 space-y-2 sm:space-y-0">
                     <div class="flex flex-col">
-                        <InputLabel value="Order date"/>
+                        <InputLabel value="Order date" :required="true"/>
                         <TextInput type="date" v-model="form.order_date" required/>
                     </div>
                     <div class="flex flex-col">
-                        <InputLabel value="Order number"/>
+                        <InputLabel value="Order number" :required="true"/>
                         <TextInput v-model="form.order_number" required/>
                     </div>
                     <div class="flex flex-col">
-                        <InputLabel value="Customer name"/>
+                        <InputLabel value="Customer name" :required="true"/>
                         <TextInput v-model="form.customer_name" required/>
                     </div>
                     <div class="flex flex-col">
-                        <InputLabel value="Delivery city"/>
+                        <InputLabel value="Delivery city" :required="true"/>
                         <TextInput v-model="form.delivery_city" required/>
+                    </div>
+                    <div class="flex flex-col">
+                        <InputLabel value="Phone"/>
+                        <TextInput v-model="form.phone"/>
                     </div>
 
                     <div class="flex flex-col">
-                        <InputLabel value="Amount"/>
+                        <InputLabel value="Amount" :required="true"/>
                         <TextInput type="number" class="sm:w-16" min="1" v-model="form.amount" required/>
                     </div>
 
@@ -79,22 +84,24 @@ onMounted(() => {
 
                 <div class="bg-white overflow-hidden shadow-sm hidden sm:block">
                     <div
-                        class="px-2 text-center grid grid-cols-6 bg-slate-600 text-white divide-x divide-slate-700 font-bold rounded-t-lg">
+                        class="px-2 text-center grid grid-cols-7 bg-slate-600 text-white divide-x divide-slate-700 font-bold rounded-t-lg">
                         <p class="p-2">Присвоенный номер / <br>Assigned Number</p>
                         <p class="p-2">Дата заказа / <br>Order date</p>
                         <p class="p-2">Номер заказа / <br>Order number</p>
                         <p class="p-2">Имя заказчика / <br>Customer name</p>
                         <p class="p-2">Город доставки / <br>Delivery city</p>
+                        <p class="p-2">Телефон / <br>Phone</p>
                         <p class="p-2">Приз выдан / <br>Prize given</p>
                     </div>
                     <div v-for="(item, key) in items" v-if="items.length"
-                         class="md:px-2 grid grid-cols-6 border border-slate-900">
+                         class="md:px-2 grid grid-cols-7 border border-slate-900">
 
                         <p class="p-2 ml-4">{{ item.id }}</p>
                         <p class="p-2 ml-4">{{ item.order_date }}</p>
                         <p class="p-2 ml-4">{{ item.order_number }}</p>
                         <p class="p-2 ml-4">{{ item.customer_name }}</p>
                         <p class="p-2 ml-4">{{ item.delivery_city }}</p>
+                        <p class="p-2 ml-4">{{ item.phone }}</p>
                         <p class="p-2 ml-4">
                             <PrimaryButton @click="givePrize(item, key)"
                                            v-if="item.prize_given === 0">

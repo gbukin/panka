@@ -11,14 +11,20 @@
     <link rel="stylesheet" href="{{asset('fonts/lazada-lottery/stylesheet.css')}}">
     <link rel="stylesheet" href="{{asset('css/lazada-lottery/reset.css')}}">
     <link rel="stylesheet" href="{{asset('css/lazada-lottery/main.css')}}">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app">
 <section id="main">
     <div class="main-top">
         <img src="{{asset('img/lazada-lottery/LOGO header.png')}}" alt="logo">
         <p class="main-top-p">
-            <a href="https://panka.pro/img/lazada-lottery/rules.jpg" class="rules">RULES</a>
+            <a href="{{asset('img/lazada-lottery/rules_en.jpg')}}" target="_blank" class="rules">RULES</a>
+            |
+            <a href="{{asset('img/lazada-lottery/rules_ru.jpg')}}" target="_blank" class="rules">ПРАВИЛА</a>
+            |
+            <a href="{{asset('img/lazada-lottery/rules_th.jpg')}}" target="_blank" class="rules">กฎ</a>
         </p>
         <p class="main-top-h">Panka Lottery 11/11</p>
     </div>
@@ -50,9 +56,14 @@
     </div>
     <div class="bottom-footer" id="contacts">
         <div class="bottom-footer-contacts">
-            <a href="tel:+660951860009" class="phone">
+            <a href="#-" class="terms&conditions"
+               @click="modalOpen=true"
+               style="text-decoration: underline !important; cursor: pointer">
+                Terms & Conditions
+            </a>
+            <a href="tel:+66826900800" class="phone">
                 <img src="{{asset('img/lazada-lottery/phone.png')}}" alt="phone">
-                +660951860009
+                +66826900800
             </a>
             <a href="mailto:pankacroutons@gmail.com" class="email">
                 <img src="{{asset('img/lazada-lottery/email.png')}}" alt="email">
@@ -85,7 +96,72 @@
             </div>
         </div>
     </div>
-</section>
+    <div id="modalFade"
+         style="background: rgba(0,0,0,0.4);"
+         class="z-20 inset-0 h-100 w-100 absolute overflow-y-auto"
+         v-on:click="modalOpen = false"
+         v-show="modalOpen">
+    </div>
+    <dialog id="modal"
+            v-bind:open="modalOpen"
+            v-on:click="modalOpen = false"
+            class="z-20 fixed w-full h-full inset-0 overflow-y-auto"
+            style="background-color: rgba(1,1,1,0.5)">
+        <div class="mx-auto mt-32 p-5 w-3/5 md:w-1/4 border-primary bg-white rounded-md shadow">
+            <span class="w-full cursor-pointer border-0 shadow-none font-bold text-red-600"
+                  v-on:click="close">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke-width="2.5"
+                     stroke="currentColor"
+                     class="w-6 h-6 ml-auto">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+                </svg>
+            </span>
 
+            <p class="text-center font-bold mb-5">
+                Terms & Conditions
+            </p>
+
+            <div>
+                <p class="flex flex-row items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12" />
+                    </svg>
+                    <a target="_blank" href="{{asset('docs/lazada-lottery/rules-ru.docx')}}" style="text-decoration: underline !important" class="text-blue-600">
+                        Акция Lazada (правила).docx
+                    </a>
+                </p>
+                <p class="flex flex-row items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12" />
+                    </svg>
+                    <a target="_blank" href="{{asset('docs/lazada-lottery/rules-ru.pages')}}" style="text-decoration: underline !important" class="text-blue-600">
+                        Акция Lazada (правила).pages
+                    </a>
+                </p>
+            </div>
+
+            <button class="mt-4 p-2 text-white bg-red-600 hover:bg-red-700 active:bg-red-800 block ml-auto rounded-md"
+                v-on:click="modalOpen = false">
+                Close
+            </button>
+        </div>
+    </dialog>
+</section>
+</div>
+<script>
+    const { createApp, ref } = Vue
+
+    createApp({
+        setup() {
+            const modalOpen = ref(false)
+            return {
+                modalOpen
+            }
+        }
+    }).mount('#app')
+</script>
 </body>
 </html>

@@ -32,6 +32,7 @@ class LazadaLotteryController extends Controller
             $lazadaLottery->order_number = $data['order_number'];
             $lazadaLottery->customer_name = $data['customer_name'];
             $lazadaLottery->delivery_city = $data['delivery_city'];
+            $lazadaLottery->phone = $data['phone'];
             $lazadaLottery->prize_given = $data['prize_given'];
 
             $lazadaLottery->save();

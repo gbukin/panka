@@ -161,7 +161,7 @@
     <p class="center-h">BBQ</p>
 </section>
 
-<section id="bottom">
+<section id="bottom" style="padding-bottom: 1rem">
     <h2 class="header-sec" id="premium" data-aos="fade-right" data-aos-offset="200" data-aos-duration="1000" data-translation-key="premium_quality">PREMIUM QUALITY</h2>
     <div class="bottom-about-block">
         <div class="text" data-aos="fade-right" data-aos-offset="200" data-aos-duration="2000">
@@ -189,7 +189,11 @@
         <div class="bottom-footer-contacts">
             <a href="tel:+660951860009" class="phone">
                 <img src="img/phone.png" alt="phone">
-                +660951860009
+                Sales Pattaya office:<br>+37127904044/+66826900800
+            </a>
+            <a href="tel:+660951860009" class="phone">
+                <img src="img/phone.png" alt="phone">
+                Sales Phuket office: +66804552612
             </a>
             <a href="mailto:pankacroutons@gmail.com" class="email">
                 <img src="img/email.png" alt="email">
