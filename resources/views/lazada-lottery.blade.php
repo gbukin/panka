@@ -20,11 +20,17 @@
     <div class="main-top">
         <img src="{{asset('img/lazada-lottery/LOGO header.png')}}" alt="logo">
         <p class="main-top-p">
-            <a href="{{asset('img/lazada-lottery/rules_en.jpg')}}" target="_blank" class="rules">RULES</a>
-            |
-            <a href="{{asset('img/lazada-lottery/rules_ru.jpg')}}" target="_blank" class="rules">ПРАВИЛА</a>
-            |
-            <a href="{{asset('img/lazada-lottery/rules_th.jpg')}}" target="_blank" class="rules">กฎ</a>
+            <span class="flex flex-row gap-x-2 justify-center text-black">
+                <a href="{{asset('img/lazada-lottery/rules_en.jpg')}}" target="_blank" class="rules">
+                    <button class="text-center p-2 bg-amber-300 rounded-md shadow-md hover:bg-amber-400 active:bg-amber-500">RULES</button>
+                </a>
+                <a href="{{asset('img/lazada-lottery/rules_ru.jpg')}}" target="_blank" class="rules">
+                    <button class="text-center p-2 bg-amber-300 rounded-md shadow-md hover:bg-amber-400 active:bg-amber-500">ПРАВИЛА</button>
+                </a>
+                <a href="{{asset('img/lazada-lottery/rules_th.jpg')}}" target="_blank" class="rules">
+                    <button class="text-center p-2 bg-amber-300 rounded-md shadow-md hover:bg-amber-400 active:bg-amber-500">กฎ</button>
+                </a>
+            </span>
         </p>
         <p class="main-top-h">Panka Lottery 11/11</p>
     </div>
@@ -109,7 +115,7 @@
             style="background-color: rgba(1,1,1,0.5)">
         <div class="mx-auto mt-32 p-5 w-3/5 md:w-1/4 border-primary bg-white rounded-md shadow">
             <span class="w-full cursor-pointer border-0 shadow-none font-bold text-red-600"
-                  v-on:click="close">
+                  v-on:click="modalOpen = false">
                 <svg xmlns="http://www.w3.org/2000/svg"
                      fill="none"
                      viewBox="0 0 24 24"
