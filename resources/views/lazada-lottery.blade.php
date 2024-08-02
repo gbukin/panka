@@ -49,7 +49,7 @@
             <tbody>
             @foreach($items as $index => $item)
                 <tr class="text-black">
-                    <td class="p-1 md:p-3 text-3xl text-blue-600 font-bold">{{$index + 1}}</td>
+                    <td class="p-1 md:p-3 text-3xl text-blue-600 font-bold">{{$item['id']}}</td>
                     <td class="p-1 md:p-3">{{$item['order_date']}}</td>
                     <td class="p-1 md:p-3">{{$item['order_number']}}</td>
                     <td class="p-1 md:p-3">{{$item['customer_name']}}</td>

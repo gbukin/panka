@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LazadaLottery;
+use App\Models\Lottery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -12,7 +13,7 @@ class LazadaLotteryController extends Controller
     public function index()
     {
         return view('lazada-lottery')
-            ->with(['items' => LazadaLottery::all()->toArray()]);
+            ->with(['items' => LazadaLottery::orderBy('id')->get()->toArray()]);
     }
 
     public function adminIndex()
