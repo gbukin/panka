@@ -18,7 +18,7 @@ class LazadaLotteryController extends Controller
 
     public function adminIndex()
     {
-        $lazadaLotteries = LazadaLottery::all();
+        $lazadaLotteries = LazadaLottery::orderBy('id')->get()->toArray();
 
         return Inertia::render('LazadaLottery/Index')->with(['items' => $lazadaLotteries]);
     }
