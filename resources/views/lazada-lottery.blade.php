@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>
-        Panka Lottery 11/11
+        Panka 11/11
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="favicon_sHL_icon.ico">
