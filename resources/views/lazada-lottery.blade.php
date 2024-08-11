@@ -32,7 +32,7 @@
                 </a>
             </span>
         </p>
-        <p class="main-top-h">Panka Lottery 11/11</p>
+        <p class="main-top-h">Panka 11/11</p>
     </div>
     <div class="main-table">
         <table class="w-full table-auto rounded-md bg-white text-black">
