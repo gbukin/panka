@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LazadaLottery;
 use App\Models\Lottery;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -50,5 +51,38 @@ class LazadaLotteryController extends Controller
         }
 
         return response()->json();
+    }
+
+    public function adminEdit(LazadaLottery $prize)
+    {
+        if (\Auth::check() && \Auth::user()->role !== User::ROLE_SUPER_ADMIN) {
+            abort(404);
+        }
+
+        return Inertia::render('LazadaLottery/Edit', ['prize' => $prize]);
+    }
+
+    public function adminUpdate(Request $request)
+    {
+        if (\Auth::check() && \Auth::user()->role !== User::ROLE_SUPER_ADMIN) {
+            abort(404);
+        }
+
+        $data = $request->request->all();
+
+        $prize = LazadaLottery::find($data['id']);
+
+        if (is_null($prize)) {
+            abort(404);
+        }
+
+        $prize->order_date = $data['order_date'];
+        $prize->order_number = $data['order_number'];
+        $prize->customer_name = $data['customer_name'];
+        $prize->delivery_city = $data['delivery_city'];
+        $prize->phone = $data['phone'];
+        $prize->save();
+
+        return Redirect::route('lazada-lottery-table');
     }
 }

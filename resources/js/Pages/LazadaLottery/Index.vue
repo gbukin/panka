@@ -2,7 +2,7 @@
 
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {onMounted} from "vue";
-import {Head, useForm} from "@inertiajs/vue3";
+import {Head, useForm, usePage} from "@inertiajs/vue3";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
@@ -15,7 +15,7 @@ const props = defineProps({
 });
 
 const form = useForm({
-    order_date: null,
+    order_date: (new Date).toISOString().split('T')[0],
     order_number: null,
     customer_name: null,
     delivery_city: null,
@@ -34,6 +34,12 @@ function givePrize(prize, index) {
     axios.post(route('lazada-lottery-give', {prize: prize})).then(() => {
         props.items[index].prize_given = 1;
     });
+}
+
+function editPrize(prize) {
+    if (usePage().props.auth.user.role === 'superadmin') {
+        window.open(route('lazada-lottery.prize-edit', prize), '_blank');
+    }
 }
 
 onMounted(() => {
@@ -94,6 +100,8 @@ onMounted(() => {
                         <p class="p-2">Приз выдан / <br>Prize given</p>
                     </div>
                     <div v-for="(item, key) in items" v-if="items.length"
+                         :class="{'cursor-pointer hover:bg-gray-100': $page.props.auth.user.role === 'superadmin'}"
+                         @click="editPrize(item)"
                          class="md:px-2 grid grid-cols-7 border border-slate-900">
 
                         <p class="p-2 ml-4">{{ item.id }}</p>
@@ -116,7 +124,7 @@ onMounted(() => {
                 </div>
 
                 <div class="block sm:hidden space-y-4">
-                    <div class="flex flex-col divide-y divide-slate-700 border border-slate-800 rounded-md shadow-md"
+                    <div class="flex flex-col divide-y divide-slate-700 border border-slate-800 rounded-t-md shadow-md"
                          v-for="(item, key) in items"
                          v-if="items.length">
                         <div class="grid grid-cols-2">
@@ -140,6 +148,10 @@ onMounted(() => {
                             <p class="p-2 ml-4">{{ item.delivery_city }}</p>
                         </div>
                         <div class="grid grid-cols-2">
+                            <p class="p-2 bg-slate-300">Телефон / <br>Phone</p>
+                            <p class="p-2 ml-4">{{ item.phone }}</p>
+                        </div>
+                        <div class="grid grid-cols-2">
                             <p class="p-2 bg-slate-300">Приз выдан / <br>Prize given</p>
                             <p class="p-2 ml-4">
                                 <PrimaryButton v-if="item.prize_given === 0"
@@ -149,6 +161,12 @@ onMounted(() => {
                                 <PrimaryButton v-else class="bg-green-600 pointer-events-none" disabled>Given</PrimaryButton>
                             </p>
                         </div>
+                        <PrimaryButton
+                            v-if="$page.props.auth.user.role === 'superadmin'"
+                            @click="editPrize(item)"
+                            class="w-full rounded-none">
+                            <span class="mx-auto">Edit</span>
+                        </PrimaryButton>
                     </div>
                     <div v-else>
                         No records found
