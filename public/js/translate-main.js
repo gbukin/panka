@@ -54,7 +54,7 @@ const en = {
     'about_us': 'ABOUT US',
     'our_flavours': 'OUR FLAVOURS',
     'premium_quality': 'PREMIUM QUALITY',
-    'lazada_lottery': 'LAZADA LOTTERY',
+    'lazada_lottery': 'LAZADA 11/11',
     'contacts': 'CONTACTS',
     /* ---------- */
 
