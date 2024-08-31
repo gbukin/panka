@@ -98,7 +98,6 @@ onMounted(() => {
                         <p class="p-2">Город доставки / <br>Delivery city</p>
                         <p class="p-2">Телефон / <br>Phone</p>
                         <p class="p-2">Приз выдан / <br>Prize given</p>
-                        <p v-if="$page.props.auth.user.role === 'superadmin'" class="p-2"></p>
                     </div>
                     <div v-for="(item, key) in items" v-if="items.length"
                          :class="{'cursor-pointer hover:bg-gray-100': $page.props.auth.user.role === 'superadmin'}"
@@ -117,12 +116,10 @@ onMounted(() => {
                                 Give
                             </PrimaryButton>
                             <PrimaryButton v-else class="bg-green-600 pointer-events-none" disabled>Given</PrimaryButton>
-                        </p>
-                        <p v-if="$page.props.auth.user.role === 'superadmin'" class="p-2 text-center">
-                          <PrimaryButton
-                              @click.stop="editPrize(item)">
-                            Edit
-                          </PrimaryButton>
+                            <PrimaryButton
+                                @click.stop="editPrize(item)">
+                              Edit
+                            </PrimaryButton>
                         </p>
                     </div>
                     <div v-else>
