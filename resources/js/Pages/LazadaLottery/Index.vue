@@ -116,6 +116,12 @@ onMounted(() => {
                                 Give
                             </PrimaryButton>
                             <PrimaryButton v-else class="bg-green-600 pointer-events-none" disabled>Given</PrimaryButton>
+                            <PrimaryButton
+                                v-if="$page.props.auth.user.role === 'superadmin'"
+                                @click="editPrize(item)"
+                                class="w-full rounded-none">
+                              <span class="mx-auto">Edit</span>
+                            </PrimaryButton>
                         </p>
                     </div>
                     <div v-else>
