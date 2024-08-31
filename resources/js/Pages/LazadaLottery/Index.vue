@@ -115,9 +115,10 @@ onMounted(() => {
                                            v-if="item.prize_given === 0">
                                 Give
                             </PrimaryButton>
-                            <PrimaryButton v-else class="bg-green-600 pointer-events-none mr-4" disabled>Given</PrimaryButton>
+                            <PrimaryButton v-else class="bg-green-600 pointer-events-none" disabled>Given</PrimaryButton>
                             <PrimaryButton
-                                @click.stop="editPrize(item)">
+                                @click.stop="editPrize(item)"
+                                class="ml-4">
                               Edit
                             </PrimaryButton>
                         </p>
