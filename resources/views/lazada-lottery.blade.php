@@ -30,10 +30,12 @@
 <section id="main">
     <div class="main-top">
         <img src="{{asset('img/lazada-lottery/LOGO header.png')}}" alt="logo">
+        @isset($lazada_prizes)
         <h1 class="text-white text-6xl font-bold">List of winners</h1>
         <div class="bg-yellow-400 text-9xl w-fit mx-auto rounded-3xl p-1">
             “PANKA 11/11”
         </div>
+        @endisset
     </div>
 
     @isset($lazada_prizes)
