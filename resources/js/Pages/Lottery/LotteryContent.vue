@@ -2,7 +2,6 @@
 
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {onMounted, ref} from "vue";
-import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import {Head} from "@inertiajs/vue3";
 import DialogModal from "@/Components/Selfmade/DialogModal.vue";

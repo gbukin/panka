@@ -32,6 +32,11 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/lazada-lottery/prize-update', [LazadaLotteryController::class, 'adminUpdate'])
         ->name('lazada-lottery.prize-update');
 
+    Route::get('/lazada-lottery-prizes/index', [LazadaLotteryController::class, 'adminPrizesIndex'])
+        ->name('lazada-lottery-prizes.index');
+    Route::post('/lazada-lottery-prizes/update', [LazadaLotteryController::class, 'adminPrizesUpdate'])
+        ->name('lazada-lottery-prizes.update');
+
     Route::get('/lotteries', function () {
         return Inertia::render('Lottery');
     })->name('lotteries');

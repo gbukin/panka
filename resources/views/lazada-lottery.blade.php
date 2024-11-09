@@ -7,11 +7,22 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="favicon_sHL_icon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{asset('fonts/lazada-lottery/stylesheet.css')}}">
     <link rel="stylesheet" href="{{asset('css/lazada-lottery/reset.css')}}">
     <link rel="stylesheet" href="{{asset('css/lazada-lottery/main.css')}}">
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        #prizes {
+            border-collapse: separate !important;
+            border-spacing: 5px !important;
+        }
+
+        #prizes > tr, td, th {
+            border: 2px solid gray !important;
+            margin: 1rem;
+        }
+    </style>
 </head>
 <body>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -19,6 +30,42 @@
 <section id="main">
     <div class="main-top">
         <img src="{{asset('img/lazada-lottery/LOGO header.png')}}" alt="logo">
+        <h1 class="text-white text-6xl font-bold">List of winners</h1>
+        <div class="bg-yellow-400 text-9xl w-fit mx-auto rounded-3xl p-1">
+            “PANKA 11/11”
+        </div>
+    </div>
+
+    @isset($lazada_prizes)
+    <div class="mt-8 main-table">
+        <table class="table mx-auto" id="prizes">
+            <thead>
+            <tr>
+                <th class="bg-orange-200 text-2xl font-bold w-44 ">Gift:</th>
+                <th class="bg-orange-200 text-2xl font-bold">ID number:</th>
+                <th class="bg-orange-200 text-2xl font-bold">Order number:</th>
+                <th class="bg-orange-200 text-2xl font-bold">Customer name:</th>
+                <th class="bg-orange-200 text-2xl font-bold">Delivery City:</th>
+                <th class="bg-orange-200 text-2xl font-bold">Prize given:</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($lazada_prizes as $prize)
+                <tr>
+                    <td class="w-44 @if($prize['is_main']) bg-lime-300 @else bg-amber-300 @endif">{{$prize['gift']}}</td>
+                    <td class="bg-transparent">{{$prize['lazada_lottery']['id']}}</td>
+                    <td class="bg-transparent">{{$prize['lazada_lottery']['order_number']}}</td>
+                    <td class="bg-transparent">{{$prize['lazada_lottery']['customer_name']}}</td>
+                    <td class="bg-transparent">{{$prize['lazada_lottery']['delivery_city']}}</td>
+                    <td class="bg-transparent">{{$prize['lazada_lottery']['prize_given']? 'Given' : 'Not given'}}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+    @endisset
+
+    <div class="main-top">
         <p class="main-top-p">
             <span class="flex flex-row gap-x-2 justify-center text-black">
                 <a href="{{asset('img/lazada-lottery/rules_en.jpg')}}" target="_blank" class="rules">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LazadaLottery;
+use App\Models\LazadaLotteryPrize;
 use App\Models\Lottery;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,8 +14,16 @@ class LazadaLotteryController extends Controller
 {
     public function index()
     {
+        $data = [
+            'items' => LazadaLottery::orderBy('id')->get()->toArray()
+        ];
+
+        if (LazadaLotteryPrize::where('lazada_lottery_id', null)->count() === 0) {
+            $data['lazada_prizes'] = LazadaLotteryPrize::with('lazadaLottery')->orderByDesc('id')->get()->toArray();
+        }
+
         return view('lazada-lottery')
-            ->with(['items' => LazadaLottery::orderBy('id')->get()->toArray()]);
+            ->with($data);
     }
 
     public function adminIndex()
@@ -59,7 +68,7 @@ class LazadaLotteryController extends Controller
             abort(404);
         }
 
-        return Inertia::render('LazadaLottery/Edit', ['prize' => $prize]);
+        return Inertia::render('LazadaLottery/Edit')->with(['prize' => $prize]);
     }
 
     public function adminUpdate(Request $request)
@@ -84,5 +93,40 @@ class LazadaLotteryController extends Controller
         $prize->save();
 
         return Redirect::route('lazada-lottery-table');
+    }
+
+    public function adminPrizesIndex()
+    {
+        $items = LazadaLotteryPrize::with('lazadaLottery')
+            ->orderBy('id')
+            ->get();
+
+        return Inertia::render('LazadaLottery/Prizes/Index')
+            ->with(['items' => $items]);
+    }
+
+    public function adminPrizesUpdate(Request $request)
+    {
+        $prizeID = $request->post('id');
+        $lazadaID = $request->post('lazada_id');
+
+        if (is_null(LazadaLottery::find($lazadaID))) {
+            abort(404, 'Lazada Lottery ID not found');
+        }
+
+        $prize = LazadaLotteryPrize::find($prizeID);
+
+        if (is_null($prize)) {
+            abort(400);
+        }
+
+        if (LazadaLotteryPrize::where('lazada_lottery_id', $lazadaID)->exists()) {
+            abort(400, 'Lazada Lottery ID already in use');
+        }
+
+        $prize->lazada_lottery_id = $lazadaID;
+        $prize->save();
+
+        return response()->json();
     }
 }
