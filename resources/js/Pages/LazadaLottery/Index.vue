@@ -40,6 +40,8 @@ function editPrize(prize) {
     if (usePage().props.auth.user.role === 'superadmin') {
         window.open(route('lazada-lottery.prize-edit', prize), '_blank');
     }
+
+    console.log('ololo')
 }
 
 onMounted(() => {
@@ -100,8 +102,6 @@ onMounted(() => {
                         <p class="p-2">Приз выдан / <br>Prize given</p>
                     </div>
                     <div v-for="(item, key) in items" v-if="items.length"
-                         :class="{'cursor-pointer hover:bg-gray-100': $page.props.auth.user.role === 'superadmin'}"
-                         @click="editPrize(item)"
                          class="md:px-2 grid grid-cols-7 border border-slate-900">
 
                         <p class="p-2 ml-4">{{ item.id }}</p>
@@ -112,11 +112,12 @@ onMounted(() => {
                         <p class="p-2 ml-4">{{ item.phone }}</p>
                         <p class="p-2 ml-4">
                             <PrimaryButton @click="givePrize(item, key)"
-                                           v-if="item.prize_given === 0">
+                                           v-if="item.prize_given === false">
                                 Give
                             </PrimaryButton>
                             <PrimaryButton v-else class="bg-green-600 pointer-events-none" disabled>Given</PrimaryButton>
                             <PrimaryButton
+                                v-if="$page.props.auth?.user.role === 'superadmin'"
                                 @click.stop="editPrize(item)"
                                 class="ml-4">
                               Edit
@@ -159,7 +160,7 @@ onMounted(() => {
                         <div class="grid grid-cols-2">
                             <p class="p-2 bg-slate-300">Приз выдан / <br>Prize given</p>
                             <p class="p-2 ml-4">
-                                <PrimaryButton v-if="item.prize_given === 0"
+                                <PrimaryButton v-if="item.prize_given == false"
                                                @click="givePrize(item, key)">
                                     Give
                                 </PrimaryButton>
